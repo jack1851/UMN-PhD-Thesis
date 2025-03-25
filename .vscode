@@ -1,0 +1,35 @@
+{
+  // Set the LaTeX root file to the slides file
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+
+  // Specify the output directory relative to the slides folder
+  "latex-workshop.latex.outDir": "./obj",
+
+  // Define a custom tool that mirrors your build options (adjust the args as needed)
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-shell-escape",
+        "-bibtex",
+        "-f",
+        "-outdir=obj",
+        "%DOC%"
+      ]
+    }
+  ],
+
+  // Define a recipe that uses the above tool
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": [
+        "latexmk"
+      ]
+    }
+  ]
+}
