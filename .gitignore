@@ -6,6 +6,9 @@ hps-simp-l1l2
 thesis.pdf
 *.fls
 
+## latexindent backups
+*.bak*
+
 #Binary and Image
 *.exe
 *.jpg
