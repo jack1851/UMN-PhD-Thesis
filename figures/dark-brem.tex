@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (in) {\(\ell^-\)};
+    \vertex [right=of in, dot] (nuc) {};
+    \vertex [below=of nuc, blob, label={below:\(Z\)}] (nucleus) {};
+    \vertex [right=of nuc, dot] (emit) {};
+    \vertex [above right=of emit] (recoil) {\(\ell^-\)};
+    \vertex [below right=of emit] (decay) {\(A'\)};
+    % \vertex [above right=of decay] (chi2) {\(\overline{\chi}\)};
+    % \vertex [below right=of decay] (chi1) {\(\chi\)};
+
+    \diagram*{
+    (in) -- [fermion] (nuc) -- [fermion] (emit) -- [fermion] (recoil),
+    (nucleus) -- [photon, edge label'=\(\gamma\)] (nuc),
+    (emit) -- [photon] (decay),
+    % (emit) -- [photon, edge label'=\(A'\)] (decay),
+    % (chi2) -- [fermion] (decay) -- [fermion] (chi1),
+    };
+  \end{feynman}
+\end{tikzpicture}
