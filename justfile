@@ -1,7 +1,7 @@
 _default:
     @just --list
 
-use_denv := env("USE_DENV", "true")
+use_denv := env("USE_DENV", "false")
 use_texfot := env("USE_TEXFOT", "false")
 
 latexmk_prefix := if use_denv == "true" {
