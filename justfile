@@ -1,7 +1,11 @@
 _default:
     @just --list
 
+<<<<<<< HEAD
 use_denv := env("USE_DENV", "false")
+=======
+use_denv := env("USE_DENV", "true")
+>>>>>>> parent of 0ea8d2e (Remove denv)
 use_texfot := env("USE_TEXFOT", "false")
 
 latexmk_prefix := if use_denv == "true" {
