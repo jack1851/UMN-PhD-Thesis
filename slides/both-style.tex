@@ -1,0 +1,52 @@
+
+\mode<presentation> {
+  \usetheme{Madrid}
+
+  \addtobeamertemplate{frametitle}{}{
+      \begin{textblock*}{100mm}(0.8\textwidth,-0.95cm)
+          \includegraphics[height=0.95cm]{ldmx_logo}
+      \end{textblock*}
+      \begin{textblock*}{100mm}(0.7\textwidth,-0.95cm)
+        \includegraphics[height=0.95cm]{heavy_photon_logo}
+      \end{textblock*}
+  }
+
+  \setbeamercolor{structure}{fg = UMNStormy }
+
+  \setbeamercolor{palette primary}{fg = UMNMaroon, bg = UMNLightGray}
+  \setbeamercolor{palette secondary}{fg = UMNMaroon, bg = white }
+  \setbeamercolor{palette tertiary}{fg = UMNLightGold, bg = UMNStormy}
+
+  \setbeamercolor{frametitle}{fg = UMNLightGold, bg = UMNMaroon }
+  \setbeamercolor{title}{fg = UMNMaroon, bg = UMNLightGray }
+
+  \setbeamercolor{section in toc}{fg = UMNMaroon}
+  \setbeamercolor{section in toc shaded}{fg = UMNMaroon}
+  
+  \setbeamercolor{button}{fg = UMNLightGold, bg = UMNMaroon }
+  
+  \setbeamercolor{palette sidebar secondary}{fg = UMNMaroon }
+  \setbeamercolor{section in sidebar shaded}{fg = UMNMaroon }
+
+  \setbeamertemplate{itemize item}{\color{UMNMaroon}$\blacksquare$}
+  \setbeamertemplate{itemize subitem}{\color{UMNLightGold}$\blacktriangleright$}
+  \setbeamertemplate{enumerate items}[default]
+  \setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+  \setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides
+
+  \setbeamercolor{block body alerted}{fg = UMNSunny, bg = UMNMaroon!20}
+  \setbeamercolor{block title alerted}{fg = UMNLightGold, bg = UMNMaroon}
+}
+
+\def\with{}
+
+\author{Tom Eichlersmith} % Your name
+\institute[UMN] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+he/him/his \\ \medskip
+University of Minnesota \\ \medskip
+\href{mailto:eichl008@umn.edu}{eichl008@umn.edu} \\ \medskip
+\begin{tabular}{p{0.4\textwidth}} \centering\with \end{tabular}
+}
+
