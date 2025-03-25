@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+  \drawhpsfirsttwolayers
+  \draw[black] (\targetx-\targethalfthick,0) -- (2.5,0);
+  \node[anchor=north west,align=left,text depth=\baselineskip] at (\targetx,+3)
+    {Truly\\Displaced};
+  \node at (\targetx+2,0.1) [vertex] {};
+  \draw[black,->] (\targetx+2.0,0.1) -- (2.5,2) node[anchor=north west] {\(e^-\)};
+  \node at (\layeronex-\sensorhalfsep,\elelayeronestereoy) [hit] {};
+  \node at (\layeronex+\sensorhalfsep,\elelayeroneaxialy) [hit] {};
+  \node at (\layertwox-\sensorhalfsep,\elelayertwostereoy) [hit] {};
+  \node at (\layertwox+\sensorhalfsep,\elelayertwoaxialy) [hit] {};
+  \draw[black,->] (\targetx+2.0,0.1) -- (2.5,-1.8) node[anchor=south west] {\(e^+\)};
+  \node at (\layeronex-\sensorhalfsep,\poslayeronestereoy) [miss] {};
+  \node at (\layeronex+\sensorhalfsep,\poslayeroneaxialy) [miss] {};
+  \node at (\layertwox-\sensorhalfsep,\poslayertwostereoy) [hit] {};
+  \node at (\layertwox+\sensorhalfsep,\poslayertwoaxialy) [hit] {};
+  \draw[black,dotted]
+    (\targetx+2,0.1) -- (\targetx,\eleyzero)
+    (\targetx+2,0.1) -- (\targetx,\posyzero);
+  \draw[decoration={brace,raise=5pt},decorate]
+    (\targetx,\eleyzero) -- node[left=6pt] {$y_{0}^{e^-}$} (\targetx,0);
+  \draw[decoration={brace,raise=5pt},decorate]
+    (\targetx,0) -- node[left=6pt] {$y_{0}^{e^+}$} (\targetx,\posyzero);
+\end{tikzpicture}
