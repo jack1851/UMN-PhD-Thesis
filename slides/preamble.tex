@@ -1,0 +1,188 @@
+\input{../preamble}
+
+%fecking magic
+\geometry{mag=1600,truedimen}
+
+%UofMN colors
+\definecolor{UMNMaroon}{RGB}{122,0,25}
+\definecolor{UMNLightGold}{RGB}{255,215,95}
+\definecolor{UMNGold}{RGB}{255,204,51}
+\definecolor{UMNStormy}{RGB}{64,77,91}
+\definecolor{UMNSunny}{RGB}{0,149,182}
+\definecolor{UMNLightGray}{RGB}{213,214,210}
+
+\usepackage{textpos}
+\usepackage{epstopdf}
+\usepackage{beamerthemesplit}
+\usepackage{soul}
+\usepackage{xifthen}
+\usepackage{listings}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{UMNLightGray},
+    commentstyle=\color{UMNStormy},
+    keywordstyle=\color{UMNMaroon},
+    numberstyle=\tiny\color{UMNMaroon},
+    stringstyle=\color{UMNSunny},
+    basicstyle=\ttfamily\footnotesize,
+    emph={ldmx },
+    emphstyle=\color{UMNMaroon},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+%Import code into the listings environment from a file
+% #1 options to give formatter
+% #2 file path to code file
+\newcommand{\codefile}[2]{%
+    \lstinputlisting[#1]{#2}
+}%
+
+\newcommand{\code}[1]{%
+  \tikz[baseline=(codebox.base)]{
+    \node[inner sep=1pt,outer sep=0pt,draw=UMNStormy,line width=0.05mm,fill=UMNLightGray,rounded corners=0.03cm] (codebox) 
+      {\textcolor{UMNSunny}{#1}};
+  }%
+}%
+
+% a title within a slide's frame, useful for separating slide into sub sections
+% #1 - text to style
+\newcommand{\framesection}[1]{%
+  \boldcol{UMNStormy}{#1}\hspace{1em}%
+}%
+
+\usepackage{bbding}
+%Checkmark
+\def\checkmark{{\color{UMNSunny}\Checkmark}}
+%Crossmark
+\def\crossmark{{\color{UMNMaroon}\XSolidBrush}}
+
+%Done and Todo items 
+\def\done{\item[$\color{UMNMaroon}\boxtimes$]}
+\def\todo{\item[$\color{UMNMaroon}\square$]}
+
+% Good and Bad items
+\def\good{\item[\checkmark]}
+\def\bad{\item[\crossmark]}
+
+\usepackage{hyperref}
+
+%Button that goes to a link when clicked
+% #1 URL that you want to link to
+% #2 Text in Button
+\newcommand{\hlink}[2]{%
+    \href{#1}{\beamergotobutton{#2}}
+}%
+
+%bolcol bold and color the input text
+% #1 color
+% #2 text
+\newcommand{\boldcol}[2]{%
+    {\color{#1}\textbf{#2}}\xspace
+}%
+
+%Only one plot on the slide
+% #1 Slide Title
+% #2 Slide Subtitle
+% #3 Filepath to image
+\newcommand{\oneplotslide}[3]{%
+    \begin{frame}
+        \frametitle{#1}
+        \framesubtitle{#2}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#3}
+        \end{figure}
+     \end{frame}
+}%
+
+%Put commands into four tiles
+% #1 Slide Title
+% #2 Slide Subtitle
+% #3 Top Left Tile
+% #4 Top Right Tile
+% #5 Bottom Left Tile
+% #6 Bottom Right Tile
+\newcommand{\fourtileslide}[6]{%
+    \begin{frame}
+        \frametitle{#1}
+        \framesubtitle{#2}
+        \begin{figure}[h]
+            \begin{tabular}{cc}
+                #3 & #4 \\
+                #5 & #6
+            \end{tabular}
+        \end{figure}
+    \end{frame}
+}%
+
+%Tile four plots on the slide
+% #1 Slide Title
+% #2 Slide Subtitle
+% #3 Filepath to top left image
+% #4 Filepath to top right image
+% #5 Filepath to bottom left image
+% #6 Filepath to bottom right image
+\newcommand{\fourplotslide}[6]{%
+    \fourtileslide{#1}{#2}
+        {\ifthenelse{\isempty{#3}}{%do nothing
+            }{\includegraphics[height=0.4\textheight]{{#3}}}}%
+        {\ifthenelse{\isempty{#4}}{%do nothing
+            }{\includegraphics[height=0.4\textheight]{{#4}}}}%
+        {\ifthenelse{\isempty{#5}}{%do nothing
+            }{\includegraphics[height=0.4\textheight]{{#5}}}}%
+        {\ifthenelse{\isempty{#6}}{%do nothing
+            }{\includegraphics[height=0.4\textheight]{{#6}}}}%
+}%
+
+%Picture on left side with comments on right
+%   #1 picture
+%   #2 comments
+\newenvironment{figurecomments}[1]{%
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.7\textheight]{#1}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \footnotesize
+}{%
+    \end{column}
+  \end{columns}
+}%
+
+
+%Section Title Card
+\newcommand{\sectionframe}[1]{%
+\begin{frame}
+    \vfill
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}#1\par%
+    \end{beamercolorbox}
+    \vfill
+\end{frame}
+}%
+
+%Wrap backup slides with these two commands to fool
+% beamer into not including the backup slides in slide count
+\newenvironment{backup}[1][Questions]{%
+  \sectionframe{#1}
+  \newcounter{finalframe}
+  \setcounter{finalframe}{\value{framenumber}}
+}{%
+  \setcounter{framenumber}{\value{finalframe}}
+}%
