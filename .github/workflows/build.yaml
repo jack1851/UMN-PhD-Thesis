@@ -1,19 +1,24 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  release: 
+    types: [released]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: 'danteev/texlive:latest'
+    env:
+      USE_DENV: false
     steps:
-      - uses: actions/checkout@v1
-      - name: Install the required packages
-        run: sudo apt-get install texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-pictures texlive-science
-      - name: Make latexmk executable
-        run: chmod +x ./latexmk/latexmk
-      - name: Build the Thesis
-        run: make
-      - uses: actions/upload-artifact@master
-        with:
-          name: Compiled Thesis
-          path: ./thesis.pdf
+    - uses: actions/checkout@v4
+    - uses: extractions/setup-just@v2
+      with:
+        just-version: 1.26.0
+    - name: Build the Thesis
+      run: just build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: Compiled Thesis
+        path: ./thesis.pdf
