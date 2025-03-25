@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+  \drawhpsfirsttwolayers
+  \draw[black] (\targetx-\targethalfthick,0) -- (2.5,0);
+  \node[anchor=north west,align=left] at (\targetx,+3)
+    {Fake Displaced\\$y_0^{e^-}\approx\qty{0}{\mm}$};
+
+  \draw[black,->] (\targetx+\targethalfthick,0.0) -- (2.5,2) node[anchor=north west] {\(e^-\)};
+  \node at (\layeronex-\sensorhalfsep,\fdelelayeronestereoy) [hit] {};
+  \node at (\layeronex+\sensorhalfsep,\fdelelayeroneaxialy) [hit] {};
+  \node at (\layertwox-\sensorhalfsep,\fdelelayertwostereoy) [hit] {};
+  \node at (\layertwox+\sensorhalfsep,\fdelelayertwoaxialy) [hit] {};
+
+  \draw[black,->] (\fdposx, \fdposy) -- (2.5,-1.8) node[anchor=south west] {\(e^+\)};
+  \draw[dashed] (\layertwox,\fdposlayertwoaxialy) -- (\targetx+\targethalfthick,0.0)
+    node[near start,below,sloped,font=\scriptsize] {True \(e^+\)};
+  \node at (\layeronex-\sensorhalfsep,\fdbadhitstereoy) [hit] {};
+  \node at (\layeronex+\sensorhalfsep,\fdbadhitaxialy) [miss] {};
+  \node at (\layeronex-\sensorhalfsep,\fdtruhitstereoy) [miss] {};
+  \node at (\layeronex+\sensorhalfsep,\fdtruhitaxialy) [miss] {};
+  \node at (\layertwox-\sensorhalfsep,\fdposlayertwostereoy) [hit] {};
+  \node at (\layertwox+\sensorhalfsep,\fdposlayertwoaxialy) [hit] {};
+
+  \node at (\fdposx,\fdposy) [vertex] {};
+
+  \draw[black,dotted] (\fdposx,\fdposy) -- (\targetx,\fdposyzero);
+
+  \draw[decoration={brace,raise=5pt},decorate]
+    (\targetx,0) -- node[left=6pt] {$y_{0}^{e^+}$} (\targetx,\fdposyzero);
+
+%  \node[vertex,label=right:{Vertex}] (vtxlabel) at (\targetx,-2.0) {};
+%  \node[hit,label=right:{Hit},below=5.0pt of vtxlabel] (hitlabel) {};
+%  \node[miss,label=right:{Missed},below=5.0pt of hitlabel] {};
+
+%  \node[vertex,label=right:{Vertex}] (vtxlabel) at (\targetx,+3.0) {};
+%  \node[hit,label=right:{Hit}] at (\targetx+1.8,+3.0) {};
+%  \node[miss,label=right:{Missed}] at (\targetx+3.0,+3.0) {};
+\end{tikzpicture}
