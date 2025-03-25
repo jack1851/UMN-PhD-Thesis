@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (standard) {\(\gamma\)};
+    \vertex [right=of standard] (loopleft);
+    \vertex [right=of loopleft] (loopright);
+    \vertex [right=of loopright] (dark) {\(A'\)};
+
+    \diagram*{
+    (standard)
+    -- [photon] (loopleft)
+    -- [fermion, half left, edge label=\(\Phi\)] (loopright)
+    -- [photon] (dark),
+    (loopright)
+    -- [fermion, half left, edge label=\(\Phi\)] (loopleft),
+    };
+  \end{feynman}
+\end{tikzpicture}
