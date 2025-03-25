@@ -1,8 +1,19 @@
 _default:
     @just --list
 
+use_denv := env("USE_DENV", "true")
+use_texfot := env("USE_TEXFOT", "false")
+
+latexmk_prefix := if use_denv == "true" {
+  "denv texfot "
+} else if use_texfot == "true" {
+  "texfot "
+} else { 
+  ""
+}
+
 latexmk_opts := "-pdf -shell-escape -bibtex -f -outdir=obj/"
-latexmk := "latexmk " + latexmk_opts
+latexmk := latexmk_prefix + "latexmk " + latexmk_opts
 
 # compile thesis pdf into repo root directory
 build:

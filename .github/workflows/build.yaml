@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: 'danteev/texlive:latest'
+    env:
+      USE_DENV: false
     steps:
     - uses: actions/checkout@v4
     - uses: extractions/setup-just@v2
