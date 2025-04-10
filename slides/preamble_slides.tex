@@ -1,24 +1,53 @@
 \input{../preamble}
 
-%fecking magic
-\geometry{mag=1600,truedimen}
+%--------------------------------------------------
+% Geometry and Scale Settings
+% Adjust the scaling factor for physical dimensions.
+%--------------------------------------------------
+\geometry{mag=1600, truedimen}
 
-%UofMN colors
+%--------------------------------------------------
+% University of Minnesota Color Definitions
+%--------------------------------------------------
 \definecolor{UMNMaroon}{RGB}{122,0,25}
 \definecolor{UMNLightGold}{RGB}{255,215,95}
 \definecolor{UMNGold}{RGB}{255,204,51}
 \definecolor{UMNStormy}{RGB}{64,77,91}
 \definecolor{UMNSunny}{RGB}{0,149,182}
-\definecolor{UMNLightGray}{RGB}{213,214,210}
+\definecolor{UMNLightGray}{RGB}{255,222,122}
 
-\usepackage{textpos}
-\usepackage{epstopdf}
-\usepackage{beamerthemesplit}
-\usepackage{soul}
-\usepackage{xifthen}
-\usepackage{listings}
+%--------------------------------------------------
+% Package Imports
+% Load additional packages required for the presentation.
+%--------------------------------------------------
+\usepackage{xspace}         % Ensures \xspace works properly with custom macros.
+\usepackage{textpos}        % Provides absolute positioning.
+\usepackage{epstopdf}       % Converts EPS images to PDF.
+\usepackage{graphicx}       % Handles image inclusion.
+\usepackage{beamerthemesplit} % Legacy beamer theme; consider using a modern theme if desired.
+\usepackage{soul}           % Allows text highlighting and underlining.
+\usepackage{xifthen}        % Enables conditional statements.
+\usepackage{listings}       % For code formatting.
+\usepackage{hyperref}       % For hyperlink support in the generated PDF.
+\usepackage{bbding}         % Provides additional symbols (e.g., checkmarks).
+
+%--------------------------------------------------
+% Hyperref Configuration
+% Customize link colors and PDF metadata.
+%--------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=UMNMaroon,
+    urlcolor=UMNStormy,
+    citecolor=UMNSunny,
+    pdftitle={Presentation Title},
+    pdfauthor={Your Name}
+}
+
+%--------------------------------------------------
+% Listings Settings for Code Snippets
+%--------------------------------------------------
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{UMNLightGray},
     commentstyle=\color{UMNStormy},
@@ -39,16 +68,22 @@
     showtabs=false,
     tabsize=2
 }
-
 \lstset{style=mystyle}
 
-%Import code into the listings environment from a file
-% #1 options to give formatter
-% #2 file path to code file
+%--------------------------------------------------
+% Custom Commands and Environments
+%--------------------------------------------------
+
+%--- Code Listing Commands ---%
+% Import code from an external file.
+% #1: Options for the formatter.
+% #2: File path to the code file.
 \newcommand{\codefile}[2]{%
     \lstinputlisting[#1]{#2}
 }%
 
+% Inline code command with a styled box.
+% #1: Inline code text.
 \newcommand{\code}[1]{%
   \tikz[baseline=(codebox.base)]{
     \node[inner sep=1pt,outer sep=0pt,draw=UMNStormy,line width=0.05mm,fill=UMNLightGray,rounded corners=0.03cm] (codebox) 
@@ -56,46 +91,46 @@
   }%
 }%
 
-% a title within a slide's frame, useful for separating slide into sub sections
-% #1 - text to style
+% Styled title command within a frame for subsection headings.
+% #1: Text to style.
 \newcommand{\framesection}[1]{%
   \boldcol{UMNStormy}{#1}\hspace{1em}%
 }%
 
-\usepackage{bbding}
-%Checkmark
+%--- List Item Symbols ---%
+% Define checkmark and crossmark symbols with custom colors.
 \def\checkmark{{\color{UMNSunny}\Checkmark}}
-%Crossmark
 \def\crossmark{{\color{UMNMaroon}\XSolidBrush}}
 
-%Done and Todo items 
+% Define "done" and "todo" list items.
 \def\done{\item[$\color{UMNMaroon}\boxtimes$]}
 \def\todo{\item[$\color{UMNMaroon}\square$]}
 
-% Good and Bad items
+% Define "good" and "bad" list items.
 \def\good{\item[\checkmark]}
 \def\bad{\item[\crossmark]}
 
-\usepackage{hyperref}
-
-%Button that goes to a link when clicked
-% #1 URL that you want to link to
-% #2 Text in Button
+%--- Hyperlink Button ---%
+% Creates a clickable button linking to a URL.
+% #1: URL to link to.
+% #2: Button text.
 \newcommand{\hlink}[2]{%
     \href{#1}{\beamergotobutton{#2}}
 }%
 
-%bolcol bold and color the input text
-% #1 color
-% #2 text
+%--- Bold and Colored Text ---%
+% Boldens and colors text.
+% #1: Color.
+% #2: Text.
 \newcommand{\boldcol}[2]{%
     {\color{#1}\textbf{#2}}\xspace
 }%
 
-%Only one plot on the slide
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Filepath to image
+%--- One Plot Slide ---%
+% Creates a slide with one plot that fills most of the frame.
+% #1: Slide Title.
+% #2: Slide Subtitle.
+% #3: File path to the image.
 \newcommand{\oneplotslide}[3]{%
     \begin{frame}
         \frametitle{#1}
@@ -107,18 +142,20 @@
      \end{frame}
 }%
 
-%Put commands into four tiles
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Top Left Tile
-% #4 Top Right Tile
-% #5 Bottom Left Tile
-% #6 Bottom Right Tile
+%--- Four Tiles Slide ---%
+% Arranges content into four tiles on a slide.
+% #1: Slide Title.
+% #2: Slide Subtitle.
+% #3: Top left content.
+% #4: Top right content.
+% #5: Bottom left content.
+% #6: Bottom right content.
 \newcommand{\fourtileslide}[6]{%
     \begin{frame}
         \frametitle{#1}
         \framesubtitle{#2}
         \begin{figure}[h]
+            \centering
             \begin{tabular}{cc}
                 #3 & #4 \\
                 #5 & #6
@@ -127,28 +164,25 @@
     \end{frame}
 }%
 
-%Tile four plots on the slide
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Filepath to top left image
-% #4 Filepath to top right image
-% #5 Filepath to bottom left image
-% #6 Filepath to bottom right image
+%--- Four Plots Slide ---%
+% A slide that tiles four plots; empty paths yield a blank tile.
+% #1: Slide Title.
+% #2: Slide Subtitle.
+% #3: Top left image file path.
+% #4: Top right image file path.
+% #5: Bottom left image file path.
+% #6: Bottom right image file path.
 \newcommand{\fourplotslide}[6]{%
-    \fourtileslide{#1}{#2}
-        {\ifthenelse{\isempty{#3}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#3}}}}%
-        {\ifthenelse{\isempty{#4}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#4}}}}%
-        {\ifthenelse{\isempty{#5}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#5}}}}%
-        {\ifthenelse{\isempty{#6}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#6}}}}%
+    \fourtileslide{#1}{#2}%
+        {\ifthenelse{\isempty{#3}}{}{\includegraphics[height=0.4\textheight]{{#3}}}}%
+        {\ifthenelse{\isempty{#4}}{}{\includegraphics[height=0.4\textheight]{{#4}}}}%
+        {\ifthenelse{\isempty{#5}}{}{\includegraphics[height=0.4\textheight]{{#5}}}}%
+        {\ifthenelse{\isempty{#6}}{}{\includegraphics[height=0.4\textheight]{{#6}}}}%
 }%
 
-%Picture on left side with comments on right
-%   #1 picture
-%   #2 comments
+%--- Figure with Comments ---%
+% Creates a slide with an image on the left and commentary on the right.
+% #1: File path of the image.
 \newenvironment{figurecomments}[1]{%
   \begin{columns}
     \begin{column}{0.6\textwidth}
@@ -164,8 +198,9 @@
   \end{columns}
 }%
 
-
-%Section Title Card
+%--- Section Title Slide ---%
+% Creates a full-slide title card for sections.
+% #1: Section title.
 \newcommand{\sectionframe}[1]{%
 \begin{frame}
     \vfill
@@ -177,8 +212,9 @@
 \end{frame}
 }%
 
-%Wrap backup slides with these two commands to fool
-% beamer into not including the backup slides in slide count
+%--- Backup Slides Environment ---%
+% Wrap backup slides to exclude them from the main slide count.
+% Optionally, you can title the backup section (default is "Questions").
 \newenvironment{backup}[1][Questions]{%
   \sectionframe{#1}
   \newcounter{finalframe}
