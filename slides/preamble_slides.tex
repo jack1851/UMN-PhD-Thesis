@@ -1,9 +1,17 @@
-\input{../preamble}
+%---------------------------------------------------------------------
+% UMN Custom Beamer Theme Preamble
+%---------------------------------------------------------------------
+\input{../preamble} % External preamble for general packages
+% Note: Ensure that TikZ, xspace and other dependencies are loaded here if not loaded below
 
-%fecking magic
-\geometry{mag=1600,truedimen}
+%---------------------------------------------------------------------
+% Geometry Adjustments
+%---------------------------------------------------------------------
+\geometry{mag=1600,truedimen} % Adjust layout scaling
 
-%UofMN colors
+%---------------------------------------------------------------------
+% UMN Color Definitions (University of Minnesota colors)
+%---------------------------------------------------------------------
 \definecolor{UMNMaroon}{RGB}{122,0,25}
 \definecolor{UMNLightGold}{RGB}{255,215,95}
 \definecolor{UMNGold}{RGB}{255,204,51}
@@ -11,14 +19,22 @@
 \definecolor{UMNSunny}{RGB}{0,149,182}
 \definecolor{UMNLightGray}{RGB}{213,214,210}
 
-\usepackage{textpos}
-\usepackage{epstopdf}
-\usepackage{beamerthemesplit}
-\usepackage{soul}
-\usepackage{xifthen}
-\usepackage{listings}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+%---------------------------------------------------------------------
+% Packages specific to this theme
+%---------------------------------------------------------------------
+\usepackage{textpos}    % For precise positioning
+\usepackage{epstopdf}    % Convert EPS images to PDF
+\usepackage{beamerthemesplit} % Verify if needed with \usetheme below
+\usepackage{soul}        % For highlighting and letter spacing
+\usepackage{xifthen}     % For conditional logic in commands
+\usepackage{listings}    % For code listings
 
+% Define a custom background color for listings if needed
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92} % Consider using this for consistency
+
+%---------------------------------------------------------------------
+% Listing Style Definition
+%---------------------------------------------------------------------
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{UMNLightGray},
     commentstyle=\color{UMNStormy},
@@ -26,7 +42,7 @@
     numberstyle=\tiny\color{UMNMaroon},
     stringstyle=\color{UMNSunny},
     basicstyle=\ttfamily\footnotesize,
-    emph={ldmx },
+    emph={ldmx}, % Note: Ensure no trailing spaces unless intentional
     emphstyle=\color{UMNMaroon},
     breakatwhitespace=false,
     breaklines=true,
@@ -39,12 +55,23 @@
     showtabs=false,
     tabsize=2
 }
-
 \lstset{style=mystyle}
 
-%Import code into the listings environment from a file
-% #1 options to give formatter
-% #2 file path to code file
+%---------------------------------------------------------------------
+% Custom Commands and Environments
+%---------------------------------------------------------------------
+
+% Bold and color text command.
+\newcommand{\boldcol}[2]{%
+    {\color{#1}\textbf{#2}}\xspace
+}%
+
+% Slide section title command for intra-slide division.
+\newcommand{\framesection}[1]{%
+  \boldcol{UMNStormy}{#1}\hspace{1em}%
+}%
+
+% Code inclusion commands for listings.
 \newcommand{\codefile}[2]{%
     \lstinputlisting[#1]{#2}
 }%
@@ -56,47 +83,24 @@
   }%
 }%
 
-% a title within a slide's frame, useful for separating slide into sub sections
-% #1 - text to style
-\newcommand{\framesection}[1]{%
-  \boldcol{UMNStormy}{#1}\hspace{1em}%
-}%
-
+% Checkmark and crossmark definitions using bbding.
 \usepackage{bbding}
-%Checkmark
-\def\checkmark{{\color{UMNSunny}\Checkmark}}
-%Crossmark
-\def\crossmark{{\color{UMNMaroon}\XSolidBrush}}
+\newcommand{\checkmarkicon}{{\color{UMNSunny}\Checkmark}}
+\newcommand{\crossmarkicon}{{\color{UMNMaroon}\XSolidBrush}}
 
-%Done and Todo items 
-\def\done{\item[$\color{UMNMaroon}\boxtimes$]}
-\def\todo{\item[$\color{UMNMaroon}\square$]}
+% List item markers for done, todo, good, and bad items.
+\newcommand{\done}{\item[$\color{UMNMaroon}\boxtimes$]}
+\newcommand{\todo}{\item[$\color{UMNMaroon}\square$]}
+\newcommand{\good}{\item[\checkmarkicon]}
+\newcommand{\bad}{\item[\crossmarkicon]}
 
-% Good and Bad items
-\def\good{\item[\checkmark]}
-\def\bad{\item[\crossmark]}
-
-\usepackage{hyperref}
-
-%Button that goes to a link when clicked
-% #1 URL that you want to link to
-% #2 Text in Button
+% Hyperlink button command
 \newcommand{\hlink}[2]{%
     \href{#1}{\beamergotobutton{#2}}
 }%
 
-%bolcol bold and color the input text
-% #1 color
-% #2 text
-\newcommand{\boldcol}[2]{%
-    {\color{#1}\textbf{#2}}\xspace
-}%
-
-%Only one plot on the slide
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Filepath to image
-\newcommand{\oneplotslide}[3]{%
+% Slide layout commands for including plots/images.
+\newcommand{\oneplotslide}[3]{% #1=Title, #2=Subtitle, #3=Image path
     \begin{frame}
         \frametitle{#1}
         \framesubtitle{#2}
@@ -104,21 +108,15 @@
             \centering
             \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{#3}
         \end{figure}
-     \end{frame}
+    \end{frame}
 }%
 
-%Put commands into four tiles
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Top Left Tile
-% #4 Top Right Tile
-% #5 Bottom Left Tile
-% #6 Bottom Right Tile
-\newcommand{\fourtileslide}[6]{%
+\newcommand{\fourtileslide}[6]{% #1=Title, #2=Subtitle, #3-#6=Tile contents
     \begin{frame}
         \frametitle{#1}
         \framesubtitle{#2}
         \begin{figure}[h]
+            \centering
             \begin{tabular}{cc}
                 #3 & #4 \\
                 #5 & #6
@@ -127,29 +125,16 @@
     \end{frame}
 }%
 
-%Tile four plots on the slide
-% #1 Slide Title
-% #2 Slide Subtitle
-% #3 Filepath to top left image
-% #4 Filepath to top right image
-% #5 Filepath to bottom left image
-% #6 Filepath to bottom right image
 \newcommand{\fourplotslide}[6]{%
-    \fourtileslide{#1}{#2}
-        {\ifthenelse{\isempty{#3}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#3}}}}%
-        {\ifthenelse{\isempty{#4}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#4}}}}%
-        {\ifthenelse{\isempty{#5}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#5}}}}%
-        {\ifthenelse{\isempty{#6}}{%do nothing
-            }{\includegraphics[height=0.4\textheight]{{#6}}}}%
+    \fourtileslide{#1}{#2}%
+        {\ifthenelse{\isempty{#3}}{}{ \includegraphics[height=0.4\textheight]{#3}}}%
+        {\ifthenelse{\isempty{#4}}{}{ \includegraphics[height=0.4\textheight]{#4}}}%
+        {\ifthenelse{\isempty{#5}}{}{ \includegraphics[height=0.4\textheight]{#5}}}%
+        {\ifthenelse{\isempty{#6}}{}{ \includegraphics[height=0.4\textheight]{#6}}}%
 }%
 
-%Picture on left side with comments on right
-%   #1 picture
-%   #2 comments
-\newenvironment{figurecomments}[1]{%
+% Environment for a slide with a picture and accompanying comments.
+\newenvironment{figurecomments}[1]{% #1=Image path
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{figure}
@@ -164,25 +149,77 @@
   \end{columns}
 }%
 
-
-%Section Title Card
+% A full slide for section titles.
 \newcommand{\sectionframe}[1]{%
-\begin{frame}
+  \begin{frame}
     \vfill
     \centering
     \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
         \usebeamerfont{title}#1\par%
     \end{beamercolorbox}
     \vfill
-\end{frame}
+  \end{frame}
 }%
 
-%Wrap backup slides with these two commands to fool
-% beamer into not including the backup slides in slide count
+% Backup slides environment to exclude from main slide count.
 \newenvironment{backup}[1][Questions]{%
-  \sectionframe{#1}
-  \newcounter{finalframe}
-  \setcounter{finalframe}{\value{framenumber}}
+  \sectionframe{#1}%
+  \newcounter{finalframe}%
+  \setcounter{finalframe}{\value{framenumber}}%
 }{%
-  \setcounter{framenumber}{\value{finalframe}}
+  \setcounter{framenumber}{\value{finalframe}}%
 }%
+
+%---------------------------------------------------------------------
+% Beamer Presentation Mode Settings
+%---------------------------------------------------------------------
+\mode<presentation> {
+  \usetheme{Madrid}
+
+  % Add logos to slide header (customize positioning as needed)
+  \addtobeamertemplate{frametitle}{}{%
+      \begin{textblock*}{100mm}(0.8\textwidth,-0.95cm)
+          \includegraphics[height=0.95cm]{ldmx_logo}
+      \end{textblock*}
+      \begin{textblock*}{100mm}(0.7\textwidth,-0.95cm)
+          \includegraphics[height=0.95cm]{heavy_photon_logo}
+      \end{textblock*}
+  }
+
+  % Beamer color definitions and palette
+  \setbeamercolor{structure}{fg=UMNStormy}
+  \setbeamercolor{palette primary}{fg=UMNMaroon, bg=UMNLightGray}
+  \setbeamercolor{palette secondary}{fg=UMNMaroon, bg=white}
+  \setbeamercolor{palette tertiary}{fg=UMNLightGold, bg=UMNStormy}
+  \setbeamercolor{frametitle}{fg=UMNLightGold, bg=UMNMaroon}
+  \setbeamercolor{title}{fg=UMNMaroon, bg=UMNLightGray}
+  \setbeamercolor{section in toc}{fg=UMNMaroon}
+  \setbeamercolor{section in toc shaded}{fg=UMNMaroon}
+  \setbeamercolor{button}{fg=UMNLightGold, bg=UMNMaroon}
+  \setbeamercolor{palette sidebar secondary}{fg=UMNMaroon}
+  \setbeamercolor{section in sidebar shaded}{fg=UMNMaroon}
+
+  \setbeamertemplate{itemize item}{\color{UMNMaroon}$\blacksquare$}
+  \setbeamertemplate{itemize subitem}{\color{UMNLightGold}$\blacktriangleright$}
+  \setbeamertemplate{enumerate items}[default]
+  \setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+  % Remove navigation symbols if not needed
+  \setbeamertemplate{navigation symbols}{}
+
+  \setbeamercolor{block body alerted}{fg=UMNSunny, bg=UMNMaroon!20}
+  \setbeamercolor{block title alerted}{fg=UMNLightGold, bg=UMNMaroon}
+}
+
+%---------------------------------------------------------------------
+% Author and Institution Details
+%---------------------------------------------------------------------
+\newcommand{\with}{} % Placeholder; fill or remove if not needed
+
+\author{Tom Eichlersmith} % Your name
+\institute[UMN]{%
+  he/him/his \\[2mm]
+  University of Minnesota \\[2mm]
+  \href{mailto:eichl008@umn.edu}{eichl008@umn.edu} \\[2mm]
+  \begin{tabular}{p{0.4\textwidth}}\centering\with\end{tabular}
+}
