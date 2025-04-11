@@ -24,7 +24,6 @@
 %---------------------------------------------------------------------
 \usepackage{textpos}    % For precise positioning
 \usepackage{epstopdf}    % Convert EPS images to PDF
-\usepackage{beamerthemesplit} % Verify if needed with \usetheme below
 \usepackage{soul}        % For highlighting and letter spacing
 \usepackage{xifthen}     % For conditional logic in commands
 \usepackage{listings}    % For code listings
@@ -175,7 +174,7 @@
 %---------------------------------------------------------------------
 \mode<presentation> {
   \usetheme{Madrid}
-
+  \usefonttheme{serif}
   % Add logos to slide header (customize positioning as needed)
   \addtobeamertemplate{frametitle}{}{%
       \begin{textblock*}{100mm}(0.8\textwidth,-0.95cm)
@@ -216,10 +215,10 @@
 %---------------------------------------------------------------------
 \newcommand{\with}{} % Placeholder; fill or remove if not needed
 
-\author{Tom Eichlersmith} % Your name
+\author{Billy Jackson} % Your name
 \institute[UMN]{%
-  he/him/his \\[2mm]
-  University of Minnesota \\[2mm]
-  \href{mailto:eichl008@umn.edu}{eichl008@umn.edu} \\[2mm]
+%  he/him/his \\[2mm]
+  University of Minnesotas \\[2mm]
+  \href{mailto:jack1851@umn.edu}{jack1851@umn.edu} \\[2mm]
   \begin{tabular}{p{0.4\textwidth}}\centering\with\end{tabular}
 }
