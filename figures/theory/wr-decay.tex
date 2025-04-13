@@ -1,0 +1,45 @@
+\begin{tikzpicture}
+    \begin{feynman}
+      %
+      % -- Define the incoming quarks on the left
+      \vertex (qbar) at (-2, 1.5) {\(\bar{q}'\)};
+      \vertex (q)    at (-2,-1.5) {\(q\)};
+      
+      % -- Central vertex where q qbar' -> W_R
+      \vertex [dot] (wr) at (0,0) {};
+      
+      % -- First decay: W_R -> N_\ell + l
+      \vertex [dot] (Nl) at (2.5,0) {};
+      \vertex (l1)  at (4,-1.5) {\(\ell^{+}\)};
+      \vertex (N) at (4, 1.5) {};
+      
+      % -- Second decay: N_\ell -> l + W_R
+      %    Then W_R -> 2 jets
+      \vertex [dot] (wrl) at (4, 1.5) {};
+      \vertex (l2) at (5.5,  3) {\(\ell^{-}\)};
+      \vertex (wr2) at (6,  1) {};
+
+      %    Then W_R -> 2 jets
+      \vertex [dot] (jj) at (6, 1) {};
+      \vertex (jet1) at (7.5,  1.7) {jet};
+      \vertex (jet2) at (7.5, 0.3) {jet};
+      
+      % -- Draw the diagram
+      \diagram*{
+        % Incoming quarks
+        (qbar) -- [fermion] (wr) -- [fermion] (q),
+        
+        % First decay of W_R
+        (wr) -- [boson, edge label=\(W_R\)] (Nl),
+        (l1) -- [fermion] (Nl),
+        (Nl) -- [fermion, edge label=\(N_\ell\)] (wrl),
+        
+        % Decay of heavy neutrino N_l
+        (wrl) -- [fermion] (l2),
+        (wrl) -- [boson, edge label=\(W_R^{*}\)] (wr2),
+
+        % Decay of second W_R into jets
+        (jet1) -- [fermion] (jj) -- [fermion] (jet2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
