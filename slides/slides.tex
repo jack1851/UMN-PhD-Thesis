@@ -107,6 +107,33 @@
   \item So, the observable objects in the decay are two same flavor leptons, and two jets. 
 }
 
+\begin{frame}{Analysis Regions}
+  \begin{figure}
+    \centering
+    \input{../figures/theory/analysis-regions}
+    \caption{A schematic diagram of the analysis region. The DY background is estimated from 
+    the DY CR (blue).The backgrounds from $tW$ and $t\bar{t}$ production are estimated from the flavor CR 
+    (green), where opposite flavor (OF) leptons are require.}
+    \label{fig:dm-mass-scale}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+  \item We define these different regions of phase space which we use to help estimate the backgrounds. 
+  \item We estimate the backgrounds from Monte Carlo, but we use these different control regions in order to derive 
+  corrections to the Monte Carlo in order to better predict the background in our Signal Region.
+  \item We can see the Signal Region in the top right. The x-axis is the invariant mass of the two leptons in the final state. 
+  So we require that the invariant mass of the two leptons by considerably high in order to reduce the background. 
+  \item Moving to the left on the x-axis, you can see that if we lower that dilepton invariant mass requirement, 
+  we get closer to the Z peak at 91.2 GeV. So we define a control region here, the Drell-Yan control region, right around 
+  the Z peak because this is dominated by Drell-Yan and so we are able to drive corrections to our Drell-Yan Monte Carlo in 
+  this control region. 
+  \item Going back to our signal region and then moving down the y-axis, we see that in the signal region we require the leptons 
+  to have the same flavor. But for ttbar events, the two tops are decaying independently, so they either can decay to the same flavor 
+  or opposite flavor. So, when we require that our leptons be opposite flavor, we are in a region that is dominated by ttbar, and has 
+  no signal within it either. So we are able to use this region to make more accurate corrections to our ttbar.
+}
+
 \begin{frame}{Particle Mixing}
   \begin{columns}
     \begin{column}{0.4\textwidth}
@@ -224,29 +251,6 @@
     \label{fig:dm-mass-scale}
   \end{figure}
   \boldcol{UMNSunny}{Both LDMX and HPS are searching for production of Light DM with electrons.}
-\end{frame}
-
-\note[itemize]{
-\item Simplifying assumption: Dark Matter has always been here (like standard matter)
-  and was in thermal equilibrium with standard matter in the early universe
-\item (Observations of the CMB also imply this so its a decently motivated assumption.)
-\item Limits the scale of mass of DM particles by connecting the mass to the interaction
-  strength
-\item Above $m_p\sim\qty{1}{\GeV}$, the interaction could be provided by the standard Weak
-  force (so-called WIMPs), many experiments searching in this region
-\item Below $m_p$, the interaction needs to be even weaker than the standard Weak force
-\item Particles are lighter than WIMPs so referred to as Light DM
-}
-
-\begin{frame}{Analysis Regions}
-  \begin{figure}
-    \centering
-    \input{../figures/theory/analysis-regions}
-    \caption{Mass scale of Thermal Relic \ac{dm}.
-      The regions in red are excluded by applying the thermal relic assumption
-      to our observations of the universe's early evolution.}
-    \label{fig:dm-mass-scale}
-  \end{figure}
 \end{frame}
 
 \note[itemize]{
