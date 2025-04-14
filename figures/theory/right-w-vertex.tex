@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+  \begin{feynman}
+      % Define the central vertex and external particles
+      \vertex [dot] (v) {};  % The central vertex
+      \vertex [below left=1.3cm and 1.5cm of v]  (l) {\(\ell^-\)};
+      \vertex [below right=1.3cm and 1.5cm of v] (n) {\(N_\ell\)};
+      \vertex [above=1.5cm of v] (w) {};
+  
+      % Draw the diagram
+      \diagram*{
+        (l) -- [fermion] (v) -- [fermion] (n),
+        (v) -- [boson, edge label'=\(W_{R}\)] (w),
+      };
+  
+      % Place the vertex factor near the central vertex
+      \node at ($(-1.7cm,0.1cm)$)
+        {\(-\displaystyle \frac{i\,g}{\sqrt{2}} \,\frac{1}{2}\,\gamma^\mu \bigl(1+\gamma^5\bigr)\)};
+  \end{feynman}
+  \end{tikzpicture}

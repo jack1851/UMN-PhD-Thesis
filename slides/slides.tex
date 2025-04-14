@@ -58,13 +58,141 @@
 
 \ssection{Background}
 
+
 \subsection{Parity Violation and Handedness}
+
+\begin{frame}{Parity Violation in $\beta$ Decay}
+  \begin{itemize}
+    \item The parity operator $\hat{P}$ corresponds to a discrete 
+      transformation $x \rightarrow -x$, etc.
+    \item 1957: C.S. Wu studied the beta decay:
+      $\ce{^{60}_{27}Co \rightarrow ^{60}_{28}Ni + e^{-} + \bar{\nu_{e}}}$
+    \item Observed \boldcol{UMNMaroon}{electrons emitted preferentially} in direction 
+      opposite to applied field.
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.65\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{wu-experiment.png}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{block}{}
+        If parity were conserved: expect equal rate for producing $e^{-}$ in directions
+            along and opposite to the nuclear spin.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vfill
+  \begin{block}{}
+    \centering
+    \boldcol{UMNSunny}{Conclude parity is violated in weak interactions.}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Helicity}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{../figures/ldmx/simulation/8gev-ecal-by-nuc.pdf}
+        \caption{\footnotesize Reconstructed energy fraction separated by 
+        energy going into nuclear processes.}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Simulation Requirement}
+        Electron reaches ECal with $> 87.5\%$ of the original beam energy.
+      \end{block}
+
+      Standard processes mimicking our signal are similar to thin-target analysis
+      \begin{itemize}
+        \item ``Nuclear'' processes (electrons and photons interacting with nuclei to produce hadrons)
+        \item Muon pair production (via high-energy photon)
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\note[itemize]{
+\item The standard processes we need to identify are familiar culprits
+  \begin{itemize}
+    \item ``Nuclear'' processes
+    \item ``Di-Muon'' production via high-energy photons
+  \end{itemize}
+\item Handling these background will depend on the volume of data we collect
+}
 
 \subsection{Left-Right Symmetric Extensions}
 
+\begin{frame}{Charged Weak Interactions}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{../figures/theory/left-w-vertex}
+        \caption{The SM left-handed charged weak vertex.}
+      \end{figure}
+      \begin{itemize}
+        \item The charged weak interaction vertex includes 
+          the left-handed chiral projection operator.
+        \item No theoretical explanation as to \emph{why} 
+          the weak force is left-handed.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{../figures/theory/right-w-vertex}
+        \caption{The LRSM right-handed weak vertex.}
+      \end{figure}
+      \begin{itemize}
+        \item Introduce $W_{R}^{\pm}$ bosons to mediate right
+          chiral interactions.
+      \end{itemize}
+      \boldcol{UMNSunny}{The parity operator transforms left- and right-handed vertices into each other.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\note[itemize]{
+\item The thermal relic assumption combined with curiosity for the lower masses
+  requires the introduction of a new field which is presumably much heavier
+  (i.e. harder to produce and observe) than our current energies.
+\item This required connection does provide an effictive mixing of the standard
+  and dark photons (like how kaons can mix) at our energy scales
+\item Allowing for this mixing then gives a new process that can produce
+  dark particles in our experiments -- dark bremsstrahlung
+\item Both HPS and LDMX search for dark brem; however, they have different
+  tactics to look for it
+}
+
+\begin{frame}{Seesaw Mechanism}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.70\textwidth]{seesaw-mechanism.png}
+    \caption{In LRSM models the lightness of SM neutrinos is explained
+    via the seesaw mechanism. Artwork by Sandbox Studio, Chicago with Ana Kova.}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+\item The thermal relic assumption combined with curiosity for the lower masses
+  requires the introduction of a new field which is presumably much heavier
+  (i.e. harder to produce and observe) than our current energies.
+\item This required connection does provide an effictive mixing of the standard
+  and dark photons (like how kaons can mix) at our energy scales
+\item Allowing for this mixing then gives a new process that can produce
+  dark particles in our experiments -- dark bremsstrahlung
+\item Both HPS and LDMX search for dark brem; however, they have different
+  tactics to look for it
+}
+
 \begin{frame}{Left-Right Symmetric Model}
   \begin{block}{Postulate of Left-Right Symmetric Models}
-    Parity violation is a low energy phenomenon that is restored at a multi-TeV energy scale.
+    Parity violation is a low energy phenomenon -- 
+    the result of a broken symmetry that is restored at a multi-TeV energy scale.
   \end{block}
   \vfill
   \begin{table}
@@ -72,16 +200,19 @@
     \caption{Summary of the Left-Right Symmetric SM
     with new extensions in \textcolor{red}{red}.}
   \end{table}
-  \vfill
 \end{frame}
 
-\begin{frame}{Seesaw Mechanism}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{seesaw-mechanism.png}
-    \caption{Seesaw mechanism in action. Artwork by Sandbox Studio, Chicago with Ana Kova.}
-  \end{figure}
-\end{frame}
+\note[itemize]{
+\item The thermal relic assumption combined with curiosity for the lower masses
+  requires the introduction of a new field which is presumably much heavier
+  (i.e. harder to produce and observe) than our current energies.
+\item This required connection does provide an effictive mixing of the standard
+  and dark photons (like how kaons can mix) at our energy scales
+\item Allowing for this mixing then gives a new process that can produce
+  dark particles in our experiments -- dark bremsstrahlung
+\item Both HPS and LDMX search for dark brem; however, they have different
+  tactics to look for it
+}
 
 \begin{frame}{Feynman Diagram}
   \begin{figure}
