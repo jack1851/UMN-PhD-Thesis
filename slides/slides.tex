@@ -58,7 +58,108 @@
 
 \ssection{Background}
 
-\subsection{HEP Vocabulary}
+\subsection{Left-Right Symmetric Extension}
+
+\begin{frame}{Summary of Cutflow}
+  \begin{table}
+    \input{../tables/gauge-groups.tex}
+    \caption{Cutflow for this analysis.
+    Background event yields are estimates for $10^{13}$ EoT.}
+  \end{table}
+  \vfill
+\end{frame}
+
+\begin{frame}{Feynman Diagram}
+  \begin{figure}
+    \centering
+    \input{../figures/theory/wr-decay}
+    \caption{$\mathrm{W_R}$ decay chain.}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+  \item This feynmann diagram gives us a sense of what exactly we are looking for. 
+  \item We have two qaurks coming in, annihilating and producing a right-handed W. 
+  That right-handed W decays to a lepton and a heavy neutrino. That heavy neutrino 
+  then decays back into a same flavor lepton and an off-shell right handed W, which 
+  then decays into two quarks which hadronize to jets. 
+  \item So, the observable objects in the decay are two same flavor leptons, and two jets. 
+}
+
+\begin{frame}{LHC}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/experiment/lhc-schematic.png}
+    \caption{Schematic showing the overall layout of the LHC. Image credit -- CERN.}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+\item These processes motivate a staged design
+  \begin{itemize}
+    \item a tracker (tagger for incoming and recoil for outgoing)
+    \item ECal for electrons/positrons and photons
+    \item HCal for hadrons (e.g. protons/neutrons) and muons
+    \item a TrigScint to quickly count electrons and help ECal make trigger decision in time.
+  \end{itemize}
+\item Hosted at SLAC Natl Accelerator Lab, recieving beam from LCLS-II 
+\item Beam facility upgrading from \qty{4}{\GeV} to \qty{8}{\GeV}, LDMX may see
+  some \qty{4}{\GeV} beam depending on how schedules line up but a majority
+  of data will be taken with \qty{8}{\GeV}
+\item \textbf{Thin target to help momentum resolution.} -- most electrons pass through
+  only minimally interacting
+}
+
+\begin{frame}{CMS Detector}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.85\textwidth]{../figures/experiment/cms-slice.png}
+    \caption{CMS detector (slice view). Image credit -- CERN.}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+\item These processes motivate a staged design
+  \begin{itemize}
+    \item a tracker (tagger for incoming and recoil for outgoing)
+    \item ECal for electrons/positrons and photons
+    \item HCal for hadrons (e.g. protons/neutrons) and muons
+    \item a TrigScint to quickly count electrons and help ECal make trigger decision in time.
+  \end{itemize}
+\item Hosted at SLAC Natl Accelerator Lab, recieving beam from LCLS-II 
+\item Beam facility upgrading from \qty{4}{\GeV} to \qty{8}{\GeV}, LDMX may see
+  some \qty{4}{\GeV} beam depending on how schedules line up but a majority
+  of data will be taken with \qty{8}{\GeV}
+\item \textbf{Thin target to help momentum resolution.} -- most electrons pass through
+  only minimally interacting
+}
+
+\begin{frame}{Analysis Regions}
+  \begin{figure}
+    \centering
+    \input{../figures/theory/analysis-regions}
+    \caption{A schematic diagram of the analysis region. The DY background is estimated from 
+    the DY CR (blue).The backgrounds from $tW$ and $t\bar{t}$ production are estimated from the flavor CR 
+    (green), where opposite flavor (OF) leptons are require.}
+    \label{fig:dm-mass-scale}
+  \end{figure}
+\end{frame}
+
+\note[itemize]{
+  \item We define these different regions of phase space which we use to help estimate the backgrounds. 
+  \item We estimate the backgrounds from Monte Carlo, but we use these different control regions in order to derive 
+  corrections to the Monte Carlo in order to better predict the background in our Signal Region.
+  \item We can see the Signal Region in the top right. The x-axis is the invariant mass of the two leptons in the final state. 
+  So we require that the invariant mass of the two leptons by considerably high in order to reduce the background. 
+  \item Moving to the left on the x-axis, you can see that if we lower that dilepton invariant mass requirement, 
+  we get closer to the Z peak at 91.2 GeV. So we define a control region here, the Drell-Yan control region, right around 
+  the Z peak because this is dominated by Drell-Yan and so we are able to drive corrections to our Drell-Yan Monte Carlo in 
+  this control region. 
+  \item Going back to our signal region and then moving down the y-axis, we see that in the signal region we require the leptons 
+  to have the same flavor. But for ttbar events, the two tops are decaying independently, so they either can decay to the same flavor 
+  or opposite flavor. So, when we require that our leptons be opposite flavor, we are in a region that is dominated by ttbar, and has 
+  no signal within it either. So we are able to use this region to make more accurate corrections to our ttbar.
+}
 
 \begin{frame}{Standard Model}
   \begin{columns}
@@ -88,50 +189,6 @@
   our observations.
 \item \textbf{BUT} it fails to account for all observed phenomena (e.g. \emph{gravity})
 \item Other vocabulary that is helpful to know...
-}
-
-\begin{frame}{Feynman Diagram}
-  \begin{figure}
-    \centering
-    \input{../figures/theory/wr-decay}
-    \caption{$\mathrm{W_R}$ decay chain.}
-  \end{figure}
-\end{frame}
-
-\note[itemize]{
-  \item This feynmann diagram gives us a sense of what exactly we are looking for. 
-  \item We have two qaurks coming in, annihilating and producing a right-handed W. 
-  That right-handed W decays to a lepton and a heavy neutrino. That heavy neutrino 
-  then decays back into a same flavor lepton and an off-shell right handed W, which 
-  then decays into two quarks which hadronize to jets. 
-  \item So, the observable objects in the decay are two same flavor leptons, and two jets. 
-}
-
-\begin{frame}{Analysis Regions}
-  \begin{figure}
-    \centering
-    \input{../figures/theory/analysis-regions}
-    \caption{A schematic diagram of the analysis region. The DY background is estimated from 
-    the DY CR (blue).The backgrounds from $tW$ and $t\bar{t}$ production are estimated from the flavor CR 
-    (green), where opposite flavor (OF) leptons are require.}
-    \label{fig:dm-mass-scale}
-  \end{figure}
-\end{frame}
-
-\note[itemize]{
-  \item We define these different regions of phase space which we use to help estimate the backgrounds. 
-  \item We estimate the backgrounds from Monte Carlo, but we use these different control regions in order to derive 
-  corrections to the Monte Carlo in order to better predict the background in our Signal Region.
-  \item We can see the Signal Region in the top right. The x-axis is the invariant mass of the two leptons in the final state. 
-  So we require that the invariant mass of the two leptons by considerably high in order to reduce the background. 
-  \item Moving to the left on the x-axis, you can see that if we lower that dilepton invariant mass requirement, 
-  we get closer to the Z peak at 91.2 GeV. So we define a control region here, the Drell-Yan control region, right around 
-  the Z peak because this is dominated by Drell-Yan and so we are able to drive corrections to our Drell-Yan Monte Carlo in 
-  this control region. 
-  \item Going back to our signal region and then moving down the y-axis, we see that in the signal region we require the leptons 
-  to have the same flavor. But for ttbar events, the two tops are decaying independently, so they either can decay to the same flavor 
-  or opposite flavor. So, when we require that our leptons be opposite flavor, we are in a region that is dominated by ttbar, and has 
-  no signal within it either. So we are able to use this region to make more accurate corrections to our ttbar.
 }
 
 \begin{frame}{Particle Mixing}
@@ -591,6 +648,7 @@
   \end{table}
   \vfill
 \end{frame}
+
 
 \note[itemize]{
 \item After these simple, physically-defined selections -- background is reduced by 5 or 7
