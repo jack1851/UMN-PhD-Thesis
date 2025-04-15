@@ -1,0 +1,70 @@
+% MU DECAY - maximal positron energy
+\begin{tikzpicture}[scale=2]
+    % Local styling definitions
+    \tikzset{>=latex} % set arrow head style
+  
+    % Color definitions
+    \colorlet{vcol}{red!50!black}
+    \colorlet{Scol}{green!60!black}
+    
+    % TikZ style definitions
+    \tikzstyle{velocity}  =[->,thick,vcol]
+    \tikzstyle{spin}      =[->,very thick,Scol]
+    \tikzstyle{charge+}   =[very thin,draw=black,
+                             top color=red!20!white, bottom color=red!50!white,
+                             shading angle=20,circle,inner sep=0.2]
+    \tikzstyle{charge0}   =[very thin,draw=black,
+                             top color=green!20!white, bottom color=green!50!white,
+                             shading angle=20,circle,inner sep=0.2]
+  
+    % Custom pic: spin (with a local length variable)
+    \tikzset{
+      pics/spin/.style={
+        code={
+          \def\Lspin{0.6} % Increased from 0.38 to 0.6 for longer spin arrows
+          \draw[-{Latex[length=3,width=2.5]},pic actions,rotate=#1,line width=0.9,Scol]
+            (-\Lspin/2,0) -- ++(\Lspin,0);
+          \draw[pic actions,rotate=#1,thin,white]
+            (-0.15*\Lspin,0) ++(170:{0.16*\Lspin} and {0.22*\Lspin}) arc (170:190:{0.16*\Lspin} and {0.22*\Lspin});
+          \draw[-{Latex[length=1.2,width=1]},pic actions,rotate=#1,thin]
+            (-0.15*\Lspin,0) ++(25:{0.16*\Lspin} and {0.22*\Lspin}) arc (25:305:{0.16*\Lspin} and {0.22*\Lspin})
+            -- ++(50:0.09*\Lspin);
+        }
+      },
+      pics/spin/.default=90,
+    }
+  
+    % Drawing definitions
+    \def\L{0.8}
+    \def\v{1.2*\L}
+    \coordinate (O) at (0,0);
+    \coordinate (LT) at (-\L, 0.18*\L);
+    \coordinate (LB) at (-\L,-0.18*\L);
+    \coordinate (R) at (\L,0);
+    \coordinate (T) at (0,0.42*\L);
+    \coordinate (LTS) at ($(LT)+(-0.3*\v, 0.18*\L)$);
+    \coordinate (LBS) at ($(LB)+(-0.3*\v,-0.18*\L)$);
+    \coordinate (RS) at ($(R)+(0.50*\v,0.18*\L)$);
+    
+    % Vectors
+    \draw[->,velocity] (R)++(0.05*\L,0) -- ++(\v,0);
+    \draw[->,velocity] (LT) --++ (-0.7*\v,0) node[black,above=2,left=0] {\strut$\nu_\mathrm{e}$};
+    \draw[->,velocity] (LB) --++ (-0.7*\v,0) node[black,below=3,left=0] {\strut$\overline{\nu}_\mu$};
+    
+    % Spin pictograms
+    \pic at (RS)  {spin={  0}};
+    \pic at (LTS) {spin={  0}};
+    \pic at (LBS) {spin={180}};
+    \pic at (T)   {spin={  0}};
+    
+    % Particles (black spin circles have been made larger)
+    \draw[charge0] (LT) circle (0.1*\L); % Increased radius from 0.07*\L to 0.1*\L
+    \draw[charge0] (LB) circle (0.1*\L); % Increased radius from 0.07*\L to 0.1*\L
+    \node[charge+,scale=2] at (O) {$+$};
+    \node[charge+,scale=1] at (R) {RH};
+    \node[charge0,scale=0.80] at (LT) {LH};
+    \node[charge0,scale=0.80] at (LB) {RH};
+    \node at ($(O)+(0,-0.45*\L)$) {\strut$\mu^+$};
+    \node[right=0] at ($(R)+(\v,0)$) {\strut$\mathrm{e}^+$};
+    
+\end{tikzpicture}
