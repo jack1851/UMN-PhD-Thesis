@@ -49,7 +49,7 @@
   \end{columns}
 \end{frame}
 
-\ssection{Background}
+\section{Background}
 
 \subsection{Parity Violation and Handedness}
 
@@ -113,50 +113,32 @@
   \boldcol{UMNSunny}{But it is important to remember that helicity is not Lorentz invariant.}
 \end{frame}
 
-\begin{frame}{Chirality}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \begin{figure}
-        \centering
-        \begin{tikzpicture}[>=stealth, line cap=round, line join=round]
-
-          % Define all coordinates (all non-negative)
-          \coordinate (Foot) at (1,-1);   % "Foot" of the S arrow
-          \coordinate (Tip)  at (3,1);     % "Tip"  of the S arrow
-          \coordinate (Origin) at (0,0);   % Left end of the horizontal line
-          \coordinate (EndLine) at (3.5,0);  % Right end of the horizontal line
-          
-          % Draw a horizontal reference line (no negative numbers)
-          \draw[thick, blue] (Origin) -- (EndLine);
-          
-          % Draw the blue arrow for p to the right
-          \draw[->, thick, blue] (EndLine) -- ++(0.5,0) node[midway, above] {\(\mathbf{p}\)};
-          
-          % Draw the red, thick diagonal arrow for S from Foot to Tip
-          \draw[very thick, ->, red] (Foot) -- (Tip)
-               node[pos=1, above, sloped] {\(\mathbf{S}\)};
-               
-          % Draw dotted vertical lines from the endpoints of S to the horizontal line at y = 0
-          % Here we explicitly supply the coordinates
-          \draw[dotted] (1,-1) -- (1,0);
-          \draw[dotted] (3,1) -- (3,0);
-        \end{tikzpicture}
-        \caption{\footnotesize Reconstructed energy fraction separated by 
-        energy going into nuclear processes.}
-      \end{figure}
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{block}{Simulation Requirement}
-        Electron reaches ECal with $> 87.5\%$ of the original beam energy.
-      \end{block}
-
-      Standard processes mimicking our signal are similar to thin-target analysis
+\begin{frame}{Chiral States}
+  \begin{itemize}
+    \item \boldcol{UMNSunny}{Chirality}: The Lorentz invariant ``version'' of helicity and an intrinsic property of particles.
       \begin{itemize}
-        \item ``Nuclear'' processes (electrons and photons interacting with nuclei to produce hadrons)
-        \item Muon pair production (via high-energy photon)
+        \item In general, define the eigenstates of $\gamma^{5}$ as \boldcol{UMNMaroon}{left} and \boldcol{UMNMaroon}{right-handed chiral} states
       \end{itemize}
-    \end{column}
-  \end{columns}
+    \item \boldcol{UMNSunny}{Ultra-relativistic limit}:
+      $E >> m$
+      \begin{itemize}
+        \item Chiral eigenstates correspond to helicity eigenstates.
+      \end{itemize}
+    \item \boldcol{UMNSunny}{Projection Operators}
+      \begin{itemize}
+        \item Project out the chiral eigenstates:
+      \end{itemize}
+      $$
+        \boxed{P_{L} = \frac{1}{2}\left(1 - \gamma^{5}\right) \quad P_{R} = \frac{1}{2}\left(1 + \gamma^{5}\right)}
+      $$
+    \item \boldcol{UMNSunny}{Spinor Decomposition}
+      \begin{itemize}
+        \item Can write any spinor in terms of its left and right-handed chiral components
+      \end{itemize}
+      $$
+        \Psi = \Psi_{L} + \Psi_{R} = P_{L}\Psi + P_{R}\Psi = \frac{1}{2}\left(1 - \gamma^{5}\right)\Psi + \frac{1}{2}\left(1 + \gamma^{5}\right)\Psi
+      $$
+  \end{itemize}
 \end{frame}
 
 \subsection{Left-Right Symmetric Extensions}
@@ -170,8 +152,8 @@
         \caption{The SM left-handed charged weak vertex.}
       \end{figure}
       \begin{itemize}
-        \item The charged weak interaction vertex includes 
-          the left-handed chiral projection operator.
+        \item Only \boldcol{UMNMaroon}{left-handed chiral} components of 
+          particle spinors participate in charged weak interactions.
         \item No theoretical explanation as to \emph{why} 
           the weak force is left-handed.
       \end{itemize}
@@ -183,10 +165,10 @@
         \caption{The LRSM right-handed weak vertex.}
       \end{figure}
       \begin{itemize}
-        \item Introduce $W_{R}^{\pm}$ bosons to mediate right
-          chiral interactions.
+        \item Introduce $W_{R}^{\pm}$ bosons to couple to \boldcol{UMNMaroon}{right-handed chiral} components of 
+        particle spinors.
+        \item Under parity, left and right-handed vertices transform into each other.
       \end{itemize}
-      \boldcol{UMNSunny}{The parity operator transforms left- and right-handed vertices into each other.}
     \end{column}
   \end{columns}
 \end{frame}
