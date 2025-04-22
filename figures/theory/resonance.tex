@@ -1,0 +1,86 @@
+% Author: Izaak Neutelings (September 2022)
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+
+% TIKZ
+\tikzset{>=latex} % for LaTeX arrow head
+\tikzstyle{curve}=[very thick,line cap=round]
+\tikzstyle{dashed curve}=[curve,thick,dashed]
+\pgfdeclarelayer{back} % to draw on background
+\pgfsetlayers{back,main} % set order
+
+% COLORS
+\definecolor{myblue}{rgb}{.0,.13,.98} % 0,32,250
+\definecolor{myred}{rgb}{.7,.1,.1}
+\colorlet{mydarkred}{myred!80!black}
+\colorlet{mydarkgreen}{green!30!black}
+\colorlet{mylightgreen}{green!30!black!15}
+
+%% FUNCTIONS
+%\tikzset{declare function={% Kruskal-Szekeres coordinates
+%  kruskalu(\x,\c) = {\fpeval{sqrt(\x*\x+(\c/2-1)*exp(\c/2))}};%
+%}}
+
+% DRAW RANDOM DATA POINTS
+\def\yerrscale{0.26} % scale fluctuations
+\def\ybarscale{0.7} % scale error bars
+\def\wbar{1.2pt} % width of line at end of error bar
+\def\drawdata[#1](#2:#3:#4){ % add data around named path
+  \def\Ndata{#2} % number of data points 
+  \pgfmathsetmacro\xmindata{#3} % xmin for graph
+  \pgfmathsetmacro\xmaxdata{#4} % xmax for graph
+  %\pgfmathsetmacro\wbar{0.2*\xmaxdata/\Ndata} % width of line at end of error bar
+  \foreach \i [evaluate={
+    \x=\xmindata+(\i-0.5)*(\xmaxdata-\xmindata)/\Ndata;
+  }] in {1,...,\Ndata}{
+    \message{^^J N=\Ndata, i=\i, x=\x}
+    \path[name path=vline] (\x,0) -- (\x,\ymax);
+    \path[name intersections={of=#1 and vline, name=i}]
+      coordinate (Pdata) at ($(i-1)+(0,{0.3*(rand)/2})$);
+    \fill (Pdata) circle(1.2pt);
+    \draw let \p1 = (Pdata) in % calculate y coordinate
+      (Pdata) --++ (0,{\ybarscale*sqrt{\y1}}) coordinate(Pup)
+      (Pdata) --++ (0,{-\ybarscale*sqrt{\y1}}) coordinate(Pdn)
+      (Pup)++(\wbar,0) --++ (-2*\wbar,0)
+      (Pdn)++(\wbar,0) --++ (-2*\wbar,0);
+  }
+}
+
+% STMET
+\begin{tikzpicture}[scale=1]
+  \message{^^JSTMET}
+  \def\xmax{4.5} % x axis maximum
+  \def\ymax{3.0} % y axis maximum
+  \clip (-0.13*\xmax,-0.2*\ymax) rectangle (1.2*\xmax,1.05*\ymax);
+  
+  % CURVES
+  \def\pathSM{
+    (0,0.55*\ymax) to[out=70,in=173,looseness=1.6]
+    coordinate[pos=0.8] (M)
+    (0.88*\xmax,0.12*\ymax)
+  }
+  \fill[mylightgreen]
+    (0,0) -- \pathSM |- cycle;
+  \draw[curve,mydarkgreen,name path=SM]
+    \pathSM;
+    \begin{pgfonlayer}{back} % draw on back
+        \draw[curve,myred,name path=BSM]
+          (M) to[out=-30,in=140,looseness=1.7]
+          (0.88*\xmax,0.28*\ymax); % <-- no node here anymore
+      \end{pgfonlayer}
+    
+    \node at (2.9,0.25) {\textcolor{mydarkgreen}{SM}};
+    \node at (3.8,1.45) {\textcolor{myred}{SM+LRSM}}; % <-- place label manually
+  
+  % DATA POINTS
+  \drawdata[SM](11:0:0.6*\xmax)
+  \drawdata[BSM](5:0.6*\xmax:0.88*\xmax)
+  
+  % AXES
+  \draw[<->,thick]
+    (\xmax,0)
+    node[below left] {$m_{\ell \ell j j}$}
+    -| (0,\ymax)
+    node[above left,rotate=90] {Events}; 
+  
+\end{tikzpicture}

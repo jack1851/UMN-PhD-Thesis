@@ -173,19 +173,10 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Seesaw Mechanism}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.70\textwidth]{seesaw-mechanism.png}
-    \caption{In LRSM models the lightness of SM neutrinos is explained
-    via the seesaw mechanism. Artwork by Sandbox Studio, Chicago with Ana Kova.}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Left-Right Symmetric Model}
+\begin{frame}{Left-Right Symmetric Models}
   \begin{block}{Postulate of Left-Right Symmetric Models}
-    Parity violation is a low energy phenomenon -- 
-    the result of a broken symmetry that is restored at a multi-TeV energy scale.
+    The weak force's left-handed nature is a low energy phenomenon -- 
+    the result of a broken left-right symmetry that is restored at a multi-TeV energy scale.
   \end{block}
   \vfill
   \begin{table}
@@ -193,6 +184,15 @@
     \caption{Summary of the Left-Right Symmetric SM
     with new extensions in \textcolor{red}{red}.}
   \end{table}
+\end{frame}
+
+\begin{frame}{Seesaw Mechanism}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.70\textwidth]{seesaw-mechanism.png}
+    \caption{In LRSM models the lightness of SM neutrinos is explained
+    via the seesaw mechanism. Artwork by Sandbox Studio, Chicago with Ana Kova.}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{Feynman Diagram}
@@ -214,7 +214,7 @@
   \item So, the observable objects in the decay are two same flavor leptons, and two jets. 
 }
 
-\ssection{LHC and CMS}
+\section{LHC and CMS}
 
 \begin{frame}{LHC}
   \begin{figure}
@@ -230,6 +230,34 @@
     \includegraphics[width=0.85\textwidth]{../figures/experiment/cms-slice.png}
     \caption{CMS detector (slice view). Image credit -- CERN.}
   \end{figure}
+\end{frame}
+
+\begin{frame}{Search Strategy}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      \vfill
+      {The cross section a \boldcol{UMNSunny}{Breit-Wigner distribution}:
+      $$
+        \sigma \propto \frac{1}{\left(m_{lljj}^{2} - m_{W_R}^{2}\right)^{2} + \Gamma^{2} m^{2}_{W_R}}
+      $$}
+      \begin{figure}
+        \centering
+        \input{../figures/theory/resonance}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.59\textwidth}
+      \begin{block}{Bump Huntin'}
+        Search for an excess of events in the \boldcol{UMNMaroon}{four object invariant mass} 
+        spectrum consisting of the two leptons and two jets ($m_{\ell \ell j j}$).
+      \end{block}
+      \begin{figure}
+        \centering
+        \resizebox{0.9\linewidth}{!}{%
+          \input{../figures/theory/wr-decay-annotated}%
+      }
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Analysis Regions}
