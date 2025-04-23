@@ -309,28 +309,31 @@
   \end{columns}
 \end{frame}
 
-\note[itemize]{
-\item Accomplish this signature using three specific variables
-\item Energy sum
-  \begin{itemize}
-    \item After using the same trigger as the thin target MM analysis
-    \item Sum over all layers and require the measurement to be \qty{400}{\MeV} less
-      than the threshold used for the trigger
-    \item Helps avoid contamination from miscalibrations in early running
-  \end{itemize}
-\item \textit{Explanatory Comma} N-1 plots show the cut variable in question after
-  all other selections have been applied. Evidence that the cut is being helpful.
-\item Quiet HCal
-  \begin{itemize}
-    \item Typical signals from muons are $\sim\qty{80}{PE}$ and other particles have higher typical signals
-    \item Require no bar within HCal to register signal higher than \qty{10}{PE}
-  \end{itemize}
-\item Thin Shower
-  \begin{itemize}
-    \item Indirectly remove ``funky'' interactions by requiring hits to be close to each other
-    \item Avoid hits below half a MIP 
-  \end{itemize}
-}
+\begin{frame}{Analysis Backgrounds}
+  \begin{block}{Dominant Backgrounds}
+    The two main backgrounds that result in an $\ell \ell j j$ final state are 
+    \boldcol{UMNMaroon}{Drell-Yan (DY)} and \boldcol{UMNMaroon}{$\mathbf{t\bar{t}}$}.
+  \end{block}
+  \vfill
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{../figures/theory/dy-process}
+        \caption{The Drell-Yan (DY) process.}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \centering
+        \input{../figures/theory/tt-process}
+        \caption{$\mathrm{t\bar{t}}$ decay.}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  \centering
+  \boldcol{UMNSunny}{Minor Backgrounds include W+Jets, Single Top, Diboson, Triboson}
+\end{frame}
 
 \begin{frame}{Analysis Regions}
   \begin{figure}

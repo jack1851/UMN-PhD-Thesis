@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+    \begin{feynman}
+      % — External particle labels
+      \vertex (qbar) at (-2,  1.5) {\(q\)};
+      \vertex (q)    at (-2, -1.5) {\(\bar{q}\)};
+      \vertex (l1)   at ( 4, -1.5) {\(\ell^{-}\)};
+      \vertex (l2)   at ( 4,  1.5) {\(\ell^{+}\)};
+  
+      % — “Radiation” vertices on the incoming lines
+      \vertex (r1) at (-0.9,  0.5) {};
+      \vertex (r2) at (-0.9, -0.5) {};
+  
+      % — Gluon endpoints (you can label or style these as you like)
+      \vertex (gl1)  at (2,  1.9) {\(g\)};
+      \vertex (gl2)  at (2, -1.9) {\(g\)};
+  
+      % — Central Z‐decay vertices
+      \vertex [dot] (Z)  at (0, 0) {};
+      \vertex [dot] (ll) at (2.5, 0) {};
+  
+      % — Main diagram (fermions + Z → ℓ⁺ℓ⁻)
+      \diagram*{
+        (qbar) -- [fermion] (Z) -- [fermion] (q),
+        (Z)    -- [boson, edge label=\(Z\)] (ll),
+        (ll)   -- [fermion] (l1),
+        (l2)   -- [fermion] (ll),
+      };
+  
+      % — Gluon radiation off each quark line
+      \draw [gluon] (r1) to (gl1);
+      \draw [gluon] (r2) to (gl2);
+    \end{feynman}
+  \end{tikzpicture}
