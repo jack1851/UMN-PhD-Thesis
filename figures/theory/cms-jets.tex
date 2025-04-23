@@ -10,6 +10,8 @@
 \colorlet{mydarkblue}{blue!40!black}
 \colorlet{mygreen}{green!40!black}
 \colorlet{myred}{red!65!black}
+\colorlet{quarkcol}{blue!85!cyan!80!black}
+\colorlet{photoncol}{yellow!80!orange!90!black}
 
 % Cone styles
 \tikzstyle{cone}     =[thin,blue!50!black,fill=blue!50!black!30]
@@ -76,28 +78,20 @@
   }
   \coordinate (ML) at 
     ($(M)+(-180:\x pt)+(90:\y pt)$);
-  % draw back half of the large cone
-  \draw[thin,red!40!black,
-        top color=red!70!black!60,
-        bottom color=red!50!black!70]
-    (M) ellipse({\a pt} and {\b pt});
 
   % JETS: draw three sub‑cones
-  \jetcone[green!80!black]{O}{BJ}{14}{0.10} % b‑jet
+  \jetcone[quarkcol]{O}{BJ}{14}{0.10} % b‑jet
+
   %\jetcone{O}{J1}{16}{0.08}                 % q‑jet 1
   %\jetcone{O}{J2}{16}{0.10}                 % q‑jet 2
 
   % Labels
-  \node[green!50!black,align=center,font=\huge]
+  \node[blue!85!cyan!80!black,align=center,font=\huge]
   at
     ($ (56:1.26) + (13pt,-7pt) $)
   {AK4 Jet\\$(\Delta R = 0.4)$};
-  \node[red!80!black,right,align=center, font=\huge] at (0:1.05) {AK8 Jet\\$(\Delta R = 0.8)$};
+  \node[yellow!40!orange!50!black,right,align=center, font=\huge] at (0:1.05) {AK8 Jet\\$(\Delta R = 0.8)$};
 
-  % FRONT of large cone
-  \draw[thin,red!40!black,fill opacity=0.9,rounded corners=0.001pt,
-        top color=red!90!black!40,
-        bottom color=red!80!black!50]
-    (ML) arc(180-\angb:180+\angb:{\a pt} and {\b pt})
-    -- ($(O)-(0.0005,0)$) -- cycle;
+
+  \jetcone[photoncol]{O}{J2}{28}{0.10}
 \end{tikzpicture}
