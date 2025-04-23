@@ -232,7 +232,11 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Search Strategy}
+\section{Search Strategy} % \ssection{Search Strategy}
+
+\subsection{Resonance Searches}
+
+\begin{frame}{Resonance Search}
   \begin{columns}
     \begin{column}{0.4\textwidth}
       \vfill
@@ -335,6 +339,8 @@
   \boldcol{UMNSunny}{Minor Backgrounds include W+Jets, Single Top, Diboson, Triboson}
 \end{frame}
 
+\subsection{Analysis Regions}
+
 \begin{frame}{Analysis Regions}
   \begin{figure}
     \centering
@@ -381,6 +387,113 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+\begin{frame}{Flavor Control Region}
+  \begin{columns}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{../figures/plots/sr-bkg-frac-mumu.png}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+        \vspace*{-15mm}
+        \centering
+        \resizebox{\columnwidth}{!}{%
+        \input{../figures/theory/flavor-cr}%
+        }
+      \vspace{1ex} 
+      \begin{block}{$t\bar{t}$ Modeling}
+        Simulation of $t\bar{t}$ agrees very well with data in the $e\mu$ sideband.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{Drell-Yan Estimation} % \ssection{Drell-Yan Estimation}
+
+\begin{frame}{Drell-Yan Control Region}
+  \begin{block}{}
+    DY modeling in the DY CR is mixed - better with leptonic variables and worse with hadronic variables.
+  \end{block}
+  \vfill
+  \begin{columns}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[width=\textwidth]{%
+        ../figures/ldmx/analysis/final-selection-with-ana-bin-edges-4gev.pdf}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \includegraphics[width=\textwidth]{%
+        ../figures/ldmx/analysis/final-selection-with-ana-bin-edges-8gev.pdf}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+ %     \vspace*{-15mm}
+      \centering
+      \resizebox{\columnwidth}{!}{%
+      \input{../figures/theory/dy-cr}%
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\subsection{Jet $p_{T}$ Reweighting}
+
+\section{Looking Forward to Run 3} % \ssection{Looking Forward to Run 3}
+ 
+
+\subsection{Dijet Mass Reweighting}
+
+\subsection{2 vs. 3 Jet Studies}
+
+\section{Conclusion} % \ssection{Conclusion}
+
+\begin{frame}{Conclusion}
+  Many improvements and areas of study under development in the $W_R$ and $N$ search:
+
+  \begin{columns} % [t] for top alignment of columns
+    %――――――――――――――――――――――――――――
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Looking Forward to Run 3}
+        Beginning comparisons in the DY CR and Flavor CR for Run 3 Data/MC, with a new
+        reweighting variable to correct the DY MC.
+      \end{block}
+
+      \begin{block}{Optimization Studies}
+        \begin{itemize}
+          \item Checking if the signal region definition of $m_{\ell \ell} > 400 \mathrm{~GeV}$ 
+            can be optimized further.
+          \item Looking at how \boldcol{UMNMaroon}{adding a third jet} to the final‐state objects affects 
+          signal and background yields.
+        \end{itemize}
+      
+      \end{block}
+    \end{column}
+
+    %――――――――――――――――――――――――――――
+    \begin{column}{0.5\textwidth}
+      \centering
+      % Replace “example-image” with your actual filename
+      \includegraphics[width=0.75\textwidth]{wr-boson-chatgpt.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\note{
+  LDMX
+  \begin{itemize}
+    \item MM/ME search still in prepatory stages
+    \item EaT work has helped prepare it for first data
+  \end{itemize}
+
+  HPS
+  \begin{itemize}
+    \item Displaced/resonant decay search
+    \item This work has helped expand it to new DM models
+  \end{itemize}
+
+  Both analysis have forthcoming papers and both enable
+  investigation of novel phase space
+}
+
+\begin{backup}
 
 \begin{frame}{Standard Model}
   \begin{columns}
@@ -580,8 +693,6 @@
   tactics to look for it
 }
 
-\ssection{Search Strategy}
-
 \note[itemize]{
 \item First, let's talk about the experiment I started with
 \item The Light Dark Matter eXperiment is a \textbf{Missing Momentum} search for
@@ -590,9 +701,6 @@
   and the momentum it had is not observable by our detector
 }
 
-\subsection{Resonance Searches}
-
-\subsection{Analysis Regions}
 \begin{frame}{Missing Momentum Search}
   \begin{columns}
     \begin{column}{0.25\textwidth}
@@ -949,8 +1057,6 @@
 \item Red is nominal (missing momentum) analysis with 40x more data at \fourgev
 }
 
-\ssection{Drell-Yan Estimation}
-
 \note[itemize]{
 \item Heavy Photon Search experiment
 \item HPS takes a different approach towards searching for dark brem
@@ -958,7 +1064,6 @@
   we look for extra events with a specific reconstructed quantities
 }
 
-\subsection{Jet $p_{T}$ Reweighting}
 \begin{frame}{Visible Signature}
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -1306,8 +1411,6 @@
 \item Unblind...
 }
 
-\subsection{Run 2 Results}
-
 \begin{frame}{Search}
   \begin{columns}
     \begin{column}{0.45\textwidth}
@@ -1364,52 +1467,6 @@
     \item Left side determined by opening angle (smaller mass, more boost, pair more likely to go through central hole of HPS)
   \end{itemize}
 }
-
-\ssection{Looking Forward to Run 3}
-
-\subsection{Dijet Mass Reweighting}
-
-\subsection{2 vs. 3 Jet Studies}
-
-\ssection{Conclusion}
-
-\begin{frame}{Conclusion}
-  Many ways to search for many types of \ac{dm}
-  
-  \begin{block}{LDMX}
-    Missing momentum/energy search still in preparatory stages
-  \end{block}
-
-  \begin{block}{HPS}
-    Excess highly-displaced events at specific mass searching within
-    data for different \ac{dm} models
-  \end{block}
-
-  \begin{center}
-    \color{UMNSunny}
-    Both enable investigation of novel phase space
-    in physics' quest to find \ac{dm}
-  \end{center}
-\end{frame}
-
-\note{
-  LDMX
-  \begin{itemize}
-    \item MM/ME search still in prepatory stages
-    \item EaT work has helped prepare it for first data
-  \end{itemize}
-
-  HPS
-  \begin{itemize}
-    \item Displaced/resonant decay search
-    \item This work has helped expand it to new DM models
-  \end{itemize}
-
-  Both analysis have forthcoming papers and both enable
-  investigation of novel phase space
-}
-
-\begin{backup}
 
 \begin{frame}{LDMX Midshower Simulation Samples}
   \begin{table}
