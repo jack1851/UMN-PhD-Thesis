@@ -49,9 +49,25 @@
   \end{columns}
 \end{frame}
 
+\note[itemize]{
+\item I will begin with some background, and explain what exactly we mean when we 
+  say the weak force is left-handed and we are searching for a right-handed W and 
+  right-handed neutrino. 
+\item I will then discuss the class of models, called left-right symmetric models, 
+    that adds these particles to the standard model.
+\item We search for these particles using data from the CMS detector at the Large 
+  Hadron Collider, most people here familiar with these to some degree so I'll quickly
+  describe them.
+\item I will explain the general search strategy that we use to look for these particles 
+  using CMS data. 
+\item And then I will discuss the backgrounds and how we are estimating them.
+\item Lastly, I'll end with a discussion about some of the things that we are looking 
+  forward to in Run 3.
+}
+
 \section{Background}
 
-\subsection{Parity Violation and Handedness}
+\subsection{Weak Interactions and Handedness}
 
 \begin{frame}{Parity Violation in $\beta$ Decay}
   \begin{itemize}
@@ -84,6 +100,30 @@
   \end{block}
 \end{frame}
 
+\note[itemize]{
+\footnotesize
+\item In the year 1957, a physicist from Colombia University named Wu conducted an experiment 
+  to test the mirror symmetry of weak interactions. Mirror symmetry, or parity invariance, is 
+  the idea that the mirror image of any physical process also represents a perfectly possible 
+  physical process.
+\item Prior to 1957, parity invariance had been confirmed for strong and electromagnetic processes, 
+  and it was widely assumed that the same would apply for the weak force, but there was no 
+  experimental confirmation of this. 
+\item So, Wu conducted this experiment where she aligned cobalt 60 nuclei in a strong magnetic field. 
+  The polarized cobalt nuclei then beta in a decayed in a weak interaction to nickel, an electron 
+  and antineutrino, and Wu recorded the directions of the emitted electrons. 
+\item Because both B and $\mu$ are axial vectors, they do not change sign under the parity transformation. 
+  Hence when viewed in the parity inverted “mirror”, the only quantity that changes sign is the vector 
+  momentum of the emitted electron. Hence, if parity were conserved in the weak interaction, the rate 
+  at which electrons were emitted at a certain direction relative to the B-field would be identical to 
+  the rate in the opposite direction. And this is what they expected to find.
+\item Experimentally, it was observed that more electrons were emitted in the hemisphere opposite to the 
+  direction of the applied magnetic field than in the hemisphere in the direction of the applied field, 
+  thus providing a clear demonstration that parity is NOT conserved in the weak interaction. The result 
+  was surprising to physicists, with Wolfgang Pauli lamenting, “I cannot believe that God is a weak 
+  left-hander”.
+}
+
 \begin{frame}{Helicity States}
   \begin{block}{Definition}
     Define the \boldcol{UMNSunny}{Helicity} of a particle as the projection of its spin onto the direction of momentum.
@@ -113,6 +153,32 @@
   \boldcol{UMNSunny}{But it is important to remember that helicity is not Lorentz invariant.}
 \end{frame}
 
+\note[itemize]{
+\footnotesize
+\item In order to understand exactly what I mean by left-handed and right-handed bosons, it is important 
+  to understand how spinors interact with the weak force. Spinors are solutions of the Dirac equation, 
+  which describes relativistic spin $\frac{1}{2}$ particles. 
+\item Its convenient to define spinors in terms of their helicity, which is the projection of the particles 
+  spin along its direction of momentum, which we see in the image on the right here.
+\item We do this because the helicity operator commutes with the dirac Hamiltonian, so it is possible to 
+  identify spinor states which are simultaneous eigenstates of the free particle dirac Hamiltonian and the 
+  helicity operator. And in fact, the motivation to introduce helicity is that the spin operator Sz does not 
+  commute with the Hamiltonian, so we can’t just say that one solution of the dirac equation is a spin up 
+  particle and another is a spin down particle, for instance. But, the dot product of the spin and momentum 
+  operators is a quantity that does commute with the Hamiltonian.
+\item For a spin half particle, the component of spin measured along any axis is quantized to be +/- 1/2, and 
+  so the eigenvalues of the helicity operator acting on a spinor are also plus or minus 1/2. The two possible 
+  helicity states for a spin- half fermion are termed right-handed, which is when the spin and momentum are 
+  aligned, as shown here, and left-handed, which is when the  spin and momentum are antialigned, as shown in 
+  the image on the right.
+\item Then we have four solutions of the dirac equation, two right and left-handed helicity particle spinors, 
+  and two right and two right and left-handed antiparticle spinors. 
+\item Unfortunatley, however, heliciy has a kryptonite, and it is that it is not Lorentz invariant. This is 
+  because for particles with mass, it is always possible to boost into a frame in which the direction of the 
+  particle's momentum is reversed and therefore the helicity flips. And because of this, helicity cannot be a 
+  fundamental property of particles.
+}
+
 \begin{frame}{Chiral States}
   \begin{itemize}
     \item \boldcol{UMNSunny}{Chirality}: The Lorentz invariant ``version'' of helicity and an intrinsic property of particles.
@@ -140,6 +206,24 @@
       $$
   \end{itemize}
 \end{frame}
+
+\note[itemize]{
+\footnotesize
+\item Fortunately, there is a Lorentz invariant version of helicity, which is called chirality. I say 
+  "version" in quotes because while chirality is an intrinsic property of a particle, unlike helicity does 
+  not have a simple physical interpretation. 
+\item In general, the eigenstates of the gamma 5-matrix are defined as left- and right-handed chiral states 
+  where I have denoted with subscripts L and R to distinguish them from the left and right handed helicity 
+  eigenstates on the previous slide.
+\item The link between helicity and chirality appears in the massless limit. In this limit, and only in this 
+  limit, helicity eigenstates are also eigenstates of the gamma 5 matrix. In other words, in the massless limit, 
+  helicity and chirality eigenstates are the same. 
+\item Now any Dirac spinor can be decomposed into left- and right-handed chiral components using these two chiral 
+  projection operators PL and PR. PR projects out right-handed chiral particle states and left handed chiral 
+  antiparticle states. And PL projects out left-handed chiral particle states and right-handed chiral antiparticle 
+  states. And since PR and PL project out chiral states, any general spinor u can be decomposed into left and 
+  right-handed chiral components, and you can see this naively if you add PL and PR together you get 1.
+}
 
 \subsection{Left-Right Symmetric Extensions}
 
@@ -173,6 +257,32 @@
   \end{columns}
 \end{frame}
 
+\note[itemize]{
+\footnotesize
+\item If this left-handed chiral projection operator looks familiar, that is because is included in the 
+  charged weak interaction vertex. What this means is that the weak force projects out the left-handed 
+  chiral state, so that only left-handed chiral particle states participate in the charged-current 
+  weak interaction. 
+\item This is what we really mean when we say the weak force is 'left-handed.' The different coupling 
+  of the weak charged-current interaction to left- handed and right-handed chiral states is the origin 
+  of parity violation. 
+\item But there is no theoretical reason behind this. There's nothing in the Standard Model that tells 
+  us that the charged weak interaction vertex should include the left chiral projection operator, instead 
+  of the right chirarl projection operator, or no projection operator at all, which is the case for QED 
+  and QCD. This is just something that has been determined from experiment. 
+\item The weak interaction symmetry group is called SU(2) left.
+\item In this group left-chiral fermions form doublets of weak isospin, where each entry is really a dirac 
+  wavefunction, so for example eL is really the left chiral component of the electrons wavefunction. Weak 
+  isospin symmetry is very much like the isospin symmetry for the strong interactions. For example if we 
+  look at the leptons, the neutrino and lepton have a total weak isospin of 1/2 and a third component of 
+  weak isospin of +1/2 for the neutrino and minus 1/2 for the electron. So a left-handed electron wavefunction, 
+  for example, emits a W boson and continues on its way. In the process it flips from an electron state to 
+  a neutrino state, analogous to way a spin $\frac{1}{2}$ particle flips its spin when it emits a photon.
+\item Experiment also indicates that all neutrinos are left-handed. So the right-handed leptons are singlets 
+  in this group. Physically, this means that they don’t couple to the charged weak bosons.
+\item The left-chiral quarks are similarly placed in doublets and the right chiral quarks in singlets. 
+}
+
 \begin{frame}{Left-Right Symmetric Models}
   \begin{block}{Postulate of Left-Right Symmetric Models}
     The weak force's left-handed nature is a low energy phenomenon -- 
@@ -185,6 +295,22 @@
     with new extensions in \textcolor{red}{red}.}
   \end{table}
 \end{frame}
+
+\note[itemize]{
+\footnotesize
+\item Left-right symmetric extensions restore left-right symmetry to the standard model by including 
+  a SU(2)R group in addition to the usual SU(2)L. 
+\item Just as the left-chiral fermions are doublets under SU(2)L we will take the right-chiral 
+  fermions to be doublets under SU(2)R. In particular notice that we must add right-chiral neutrinos 
+  to go with the right- leptons so that they can form doublets of SU(2)R.
+\item These right-chiral fermions then have charged current gauge interactions mediated by the charged 
+  gauge bosons of SU(2)R, which we can call WR±. 
+\item Then, the interactions of left-chiral and right-chiral fermions are identical and therefore parity 
+  is conserved. This is why this model is called the left-right symmetric model. 
+\item Lastly, charged current interactions mediated by the right handed W have a coupling constant given 
+  by gR. This is a free parameter and so could take on any value, but we assume that it is equal to the 
+  left-handed weak coupling constant since this would be the most symmetric model.
+}
 
 \begin{frame}{Seesaw Mechanism}
   \begin{figure}
@@ -224,6 +350,17 @@
   \end{figure}
 \end{frame}
 
+\note[itemize]{
+  \item The Large Hadron Collider is the worlds most powerful particle accelerator. 
+  \item The accelerator sits 100 meters underground at CERN in Geneva, and consists 
+    of a 27 kilometer ring of superconducting magnets. 
+  \item It accelerates beams of hadrons in opposite directions to nearly the speed 
+    of light, which are made to collide at four interaction points with a center of 
+    mass energy of 13 TeV.
+  \item One of these interaction points is at the Compact Muon Solenoid, or CMS 
+    detector, which is what we are using to look for the WR.
+}
+
 \begin{frame}{CMS Detector}
   \begin{figure}
     \centering
@@ -231,6 +368,24 @@
     \caption{CMS detector (slice view). Image credit -- CERN.}
   \end{figure}
 \end{frame}
+
+\note[itemize]{
+  \item The CMS detector is a general-purpose detector designed to observe any 
+    new physics that the LHC might reveal.
+  \item The detector is shaped like a cylindrical onion, with several concentric 
+    layers of components. 
+  \item Starting from the center, the silicon tracker identifies the paths taken 
+    by charged particles. 
+  \item The electromagnetic calorimeter, or ECAL, measures the energy of electrons 
+    and photons by stopping them.
+  \item Hadrons fly through the ECAL and are stopped by the next layer, the 
+    hadronic calorimeter or HCAL.
+  \item Beyond the HCAL is the a superconducting solenoid, which is the worlds most 
+    powerful solenoid magnet ever made and generates a 3.8 tesla magnetic field. 
+  \item At the outermost layer we have iron return yoke from the solenoid interspersed 
+    with muon chambers. Muons are not stopped by the calorimeters so these special sub 
+    detectors have to be built to detect them. 
+}
 
 \section{Search Strategy} % \ssection{Search Strategy}
 
@@ -263,6 +418,26 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+\note[itemize]{
+  \item The general strategy that we use to search for the right-handed W and heavy 
+    neutrino is the classic resonance search, otherwise known as bump hunting. 
+  \item The way that this works is that we add up the four momentum of our final state 
+    particles and square that to get the four object invariant mass of our final state particle.
+  \item Then by conservation of energy and momentum, the four momentum of the right-handed W is 
+    equal to the total four momentum of our observables, which gives us the relation q squared 
+    equals mlljj squared. 
+  \item The W propagator then has a factor of 1 over q squared minus mW squared in the matrix element,
+   where mW is the on shell mass of the right handed W and this is proportional to the interaction cross 
+   section.  So, when the four object mass of our final state particles approaches the mass of the 
+   right-handed W, we observe a resonance in the invariant mass spectrum. 
+  \item Perhaps the most famous example of this is the decay of the Higgs to two photons. Here we have a 
+    plot of the invariant mass spectrum of the diphotons, and when that mass approaches the mass of the 
+    Higgs, we observe a bump in the spectrum.
+  \item And I should say that the reason we favor this particular decay mode, is that we can also use this 
+    same technique to measure the mass of the heavy neutrino by looking at the ljj mass spectrum. So in a 
+    sense we can kill two birds with one stone by examining this particular decay mode. 
+}
 
 \begin{frame}[t]{Analysis Topologies}
   \begin{columns}[t]
@@ -313,6 +488,33 @@
   \end{columns}
 \end{frame}
 
+\note[itemize]{
+  \footnotesize
+  \item So when one of our final state quarks hadronizes, it produces a shower of particles that 
+    pass through the CMS detector in a narrow cone. Rather than trying to track the energy and 
+    momentum of each one of those particles, CMS clusters these particles together using something 
+    called the anti kt algorithm and calls the collection of those particles a jet and we look at 
+    the energy and momenta of that object as a whole.
+  \item The sizes of these jets are defined in terms of the angular separation or angular distance 
+    delta R, which is a measure of how collimated the particles in a jet are. The two most common 
+    jet sizes are delta R = 0.4 and delta R = 0.8.
+  \item There are two regions in the analysis, and so far I have only discussed this first one, the 
+    resolved region. In the resolved search, we are searching for four isolated objects, either two 
+    electrons or two muons, and two ak4 jets,. Each pair of objects have to be well separated, meaning 
+    each pair has a delta R greater than 0.4 between them. And we search for signal in the four object 
+    invariant mass spectrum.
+  \item But, there is another analysis region called the boosted region. But, if the mass of the 
+    right-handed W is much greater than the mass the heavy neutrino, then when the WR decays the heavy 
+    neutrino will be produced with a large momentum, and then the three decay predicts of the heavy 
+    neutrino will be highly collimated as they pass through the detector. So then rather than try to 
+    reconstruct each of these objects individually, we cluster them into an AK8 jet, which we also call 
+    a fat jet.
+  \item In the boosted region, we have two objects: a well isolated lepton which is produced roughly 
+    back-to-back with the heavy neutrino, which we reconstruct as a fat jet. We then use the invariant 
+    mass of these two objects to search for signal.
+  \item For the rest of this analysis, I am only going to focus on the resolved region. 
+}
+
 \begin{frame}{Analysis Backgrounds}
   \begin{block}{Dominant Backgrounds}
     The two main backgrounds that result in an $\ell \ell j j$ final state are 
@@ -339,6 +541,18 @@
   \boldcol{UMNSunny}{Minor Backgrounds include W+Jets, Single Top, Diboson, Triboson}
 \end{frame}
 
+\note[itemize]{
+  \footnotesize
+  \item The event selection targets our signal, but there are standard model processes that have 
+    similar final states. The two primary backgrounds are Drell-Yan and ttbar.
+  \item In Drell-Yan on the left here, two quarks annihilate and produce two same flavor leptons, 
+    and then we get two jets coming from initial state radiation or final state radiation.
+  \item For ttbar events, if you follow the decay of the top, you see the top decays to a b and 
+    a left-handed W, the W then decays to a lepton and a neutrino. The antitop decays in a similar 
+    fashion, and we are left with two leptons and two b quarks which hadronize to jets.
+  \item And there are more minor background like single-top, W+jets, diboson and triboson.
+  }
+
 \subsection{Analysis Regions}
 
 \begin{frame}{Analysis Regions}
@@ -353,6 +567,7 @@
 \end{frame}
 
 \note[itemize]{
+  \footnotesize
   \item We define these different regions of phase space which we use to help estimate the backgrounds. 
   \item We estimate the backgrounds from Monte Carlo, but we use these different control regions in order to derive 
   corrections to the Monte Carlo in order to better predict the background in our Signal Region.
@@ -436,7 +651,26 @@
   \end{columns}
 \end{frame}
 
-\subsection{Background Reweighting}
+\note[itemize]{
+  \footnotesize
+  \item For the rest of this talk I am going to discuss the Drell-Yan background estimation, which is the weakest aspect of this 
+    analysis and it is what we are currently working on right now.
+  \item As I mentioned before, the drell-yan background is simulated with Monte Carlo, and there several corrections 
+    that we make to it in the control region. 
+  \item We first apply QCD and nNLO electroweak corrections. We then notice that the jet pt spectrum is not well modeled when we 
+    compare our Monte Carlo to data, so we then derived a jet pt correction in order to force the monte carlo to better model the 
+    data. And then finally, we correct the normalization of the Drell-Yan monte carlo. These are a lot of corrections, the only 
+    one that I am going to discuss is this third one, which is the jet pt reweighting. 
+  \item When we first compared our Monte Carlo to data in the control region, we noticed that the leptonic side of the event agreed 
+    well, so variables like the pt of the leading and subleading leptons were in good agreement, but the hadronic side of the event, 
+    and specifically the leading jet pT spectrum, was mismodelled. 
+  \item In particular, here we can see that the simulation is predicting harder jets than the data. 
+  \item We think that this is due to a restriction in the Drell-Yan Monte Carlo event generator, which is restricted to the leading 
+    order simulation of events and doesn’t take into account any loop corrections. Next-to-leading order calculations might improve 
+    the accuracy of the simulation as the hard scattering would be calculated to one order higher in the strong coupling constant.
+}
+
+\subsection{Correcting the Background}
 
 \begin{frame}{DY MC Reweighting}
   \begin{columns}
@@ -464,6 +698,16 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+\note[itemize]{
+  \footnotesize
+  \item The jet pT correction is a bin-by-bin rescaling given by this formula and apply this to our Drell Yan distributions in all 
+    regions. Since the mismodelling is due to the hadronic side of the event, it doesn’t matter whether the leptons from the Z decay 
+    in our events are electrons or muons, and so we take a weighted average of the two event samples, with our nominal ratio ranging 
+    from 0.8 to 1.2. 
+  \item Physcially what this means is that we are correcting the shape of the Drell-Yan leading jet pt distribution to match those 
+    observed with data. 
+}
 
 \begin{frame}{DY CR Reweighted}
   \begin{columns}
@@ -506,6 +750,17 @@
     \end{column}
   \end{columns}
 \end{frame}
+
+\note[itemize]{
+  \footnotesize
+  \item Here is a plot of our four object invariant mass in the Control Region on the left, and the signal region on the right. 
+    This is the same control region plot that I showed a few slides ago, but again the blue line represents our background without 
+    the Drell-Yan leading jet pT correction, and then the yellow Z+Jets background is the background with the correction applied. 
+  \item So, we can see that in the control region, the correction pulls down the excess background and brings the simulation into 
+    good agreement with data. However, in the signal region, we observe the opposite effect. Initially, there is good agreement 
+    between simulation and data without the correction, and then when we apply the correction, we create a discrepancy, which is 
+    especially noticeable above 2 TeV. 
+}
 
 \section{Looking Forward to Run 3}
 \subsection{Previous Results}
