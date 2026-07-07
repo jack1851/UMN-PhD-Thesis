@@ -1,8 +1,16 @@
-# Defense Slides
-Holding `beamer`-based LaTeX slides for my defense with
-a `beamer` style using UMN colors and the experimental logos.
+# Talk Slides
 
+`beamer`-based LaTeX slides for talks about the WR boson and heavy neutrino
+search, with a style using UMN colors and the experiment logos. Currently
+holds the UMN HEP seminar talk.
+
+- `slides.tex` : slide source; pulls figure and table sources from
+  `../figures/` and `../tables/`
+- `preamble_slides.tex` : beamer theme and colors, on top of the shared
+  `../preamble.tex`
 - `figs` : directory holding slide-specific figures and plots
-- `cms_logo.png` and `goldy_leaning.png` : cms and UMN logos included in header of each slide
-- `preamble.tex` : preamble that defines helpful commands and colors, and defining style of slides
-- `slides.tex` : actual source for slides that `\input`s the other preamble files at the top
+- `cms_logo.png` and `goldy_leaning.png` : CMS and UMN logos included in the
+  header of each slide
+
+Build from the repo root with `just slides`; present with `just present`
+(pympress, from the local `venv`).
