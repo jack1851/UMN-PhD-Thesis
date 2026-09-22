@@ -1,6 +1,7 @@
 #Generated files
 thesis.pdf
 *.fls
+progress/out/
 
 ## latexindent backups
 *.bak*

@@ -1,0 +1,50 @@
+# Word targets per chapter for `just progress`.
+#
+# Keys are chapter files relative to the repo root. `aliases` lists earlier
+# paths of the same chapter so its history survives renames. `target` is the
+# rough finished length in words (text + headings + captions, as texcount
+# reports them). Adjust freely; the numbers below are placeholders.
+#
+# Optional: a date to draw on the chart as a vertical line, with a
+# required-pace line from the latest total to the target on that day.
+# deadline = 2027-05-01
+
+[chapters."chapters/groundwork/intro.tex"]
+label = "Introduction"
+target = 3000
+aliases = ["chapters/intro.tex"]
+
+[chapters."chapters/groundwork/theory.tex"]
+label = "SM and left-right symmetry"
+target = 8000
+aliases = ["chapters/lrsm_theory.tex", "chapters/science.tex"]
+
+[chapters."chapters/detector/experiment.tex"]
+label = "CMS experiment"
+target = 8000
+aliases = ["chapters/experiment.tex", "chapters/detector.tex"]
+
+[chapters."chapters/analysis/reconstruction.tex"]
+label = "Event reconstruction"
+target = 6000
+aliases = ["chapters/reconstruction.tex"]
+
+[chapters."chapters/analysis/data_set.tex"]
+label = "Data analysis strategy"
+target = 4000
+aliases = ["chapters/data_set.tex", "chapters/simulation.tex"]
+
+[chapters."chapters/analysis/event_selection.tex"]
+label = "Event selection"
+target = 6000
+aliases = ["chapters/event_selection.tex"]
+
+[chapters."chapters/analysis/analysis.tex"]
+label = "Analysis"
+target = 10000
+aliases = ["chapters/analysis.tex"]
+
+[chapters."chapters/conclusion/conclusion.tex"]
+label = "Conclusion"
+target = 2000
+aliases = ["chapters/conclusion.tex"]

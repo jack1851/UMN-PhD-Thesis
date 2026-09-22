@@ -28,6 +28,10 @@ watch: _objdirs
 view:
     open obj/thesis.pdf
 
+# count words and open items per chapter across git history; plot progress/out/progress.png
+progress *args:
+    uv run progress/progress.py {{ args }}
+
 # build slides into slides/obj/slides.pdf
 slides:
     cd slides && {{ latexmk }} slides.tex

@@ -4,6 +4,14 @@
 \documentclass[11pt, oneside]{mnthesis}
 \input{preamble}
 
+% Inline notes for unfinished bits, e.g. \todo{cite the LRSM review} or
+% \missingfigure{DY control region}. `just progress` counts them per chapter.
+% Loaded here rather than in preamble.tex because the slides define their own
+% \todo. Add the `disable` option to hide every note for the final version.
+\usepackage[colorinlistoftodos, textsize=scriptsize]{todonotes}
+\setlength{\marginparwidth}{1in} % mnthesis.cls sets these to zero, which
+\setlength{\marginparsep}{0.1in} % squashes the margin notes
+
 \linespread{1.3}
 
 
