@@ -26,7 +26,7 @@ jobs:
     - name: Build the Thesis
       run: just build
       env:
-        TEXINPUTS: ./billy-common//:
+        TEXINPUTS: "./billy-common//:"
     - uses: actions/upload-artifact@v4
       with:
         name: Compiled Thesis
