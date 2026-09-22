@@ -3,48 +3,65 @@
 # Keys are chapter files relative to the repo root. `aliases` lists earlier
 # paths of the same chapter so its history survives renames. `target` is the
 # rough finished length in words (text + headings + captions, as texcount
-# reports them). Adjust freely; the numbers below are placeholders.
+# reports them). Targets follow the chapter plan agreed 2026-09-22; the sum
+# is 50k words against ~45-47k for the Pastika and Evans theses.
 #
 # Optional: a date to draw on the chart as a vertical line, with a
 # required-pace line from the latest total to the target on that day.
 # deadline = 2027-05-01
 
-[chapters."chapters/groundwork/intro.tex"]
+[chapters."chapters/01-intro.tex"]
 label = "Introduction"
-target = 3000
-aliases = ["chapters/intro.tex"]
+target = 2500
+aliases = ["chapters/groundwork/intro.tex", "chapters/intro.tex"]
 
-[chapters."chapters/groundwork/theory.tex"]
+[chapters."chapters/02-theory.tex"]
 label = "SM and left-right symmetry"
-target = 8000
-aliases = ["chapters/lrsm_theory.tex", "chapters/science.tex"]
+target = 6500
+aliases = ["chapters/groundwork/theory.tex", "chapters/lrsm_theory.tex", "chapters/science.tex"]
 
-[chapters."chapters/detector/experiment.tex"]
-label = "CMS experiment"
-target = 8000
-aliases = ["chapters/experiment.tex", "chapters/detector.tex"]
+[chapters."chapters/03-detector.tex"]
+label = "LHC and CMS"
+target = 5500
+aliases = ["chapters/detector/experiment.tex", "chapters/experiment.tex", "chapters/detector.tex"]
 
-[chapters."chapters/analysis/reconstruction.tex"]
-label = "Event reconstruction"
-target = 6000
-aliases = ["chapters/reconstruction.tex"]
-
-[chapters."chapters/analysis/data_set.tex"]
-label = "Data analysis strategy"
+[chapters."chapters/04-hgcal.tex"]
+label = "HGCAL upgrade"
 target = 4000
-aliases = ["chapters/data_set.tex", "chapters/simulation.tex"]
 
-[chapters."chapters/analysis/event_selection.tex"]
+[chapters."chapters/05-strategy.tex"]
+label = "Analysis strategy"
+target = 3000
+
+[chapters."chapters/06-samples.tex"]
+label = "Data and simulation"
+target = 3000
+aliases = ["chapters/analysis/data_set.tex", "chapters/data_set.tex", "chapters/simulation.tex"]
+
+[chapters."chapters/07-objects.tex"]
+label = "Object reconstruction"
+target = 5000
+aliases = ["chapters/analysis/reconstruction.tex", "chapters/reconstruction.tex"]
+
+[chapters."chapters/08-selection.tex"]
 label = "Event selection"
-target = 6000
-aliases = ["chapters/event_selection.tex"]
+target = 5000
+aliases = ["chapters/analysis/event_selection.tex", "chapters/event_selection.tex"]
 
-[chapters."chapters/analysis/analysis.tex"]
-label = "Analysis"
-target = 10000
-aliases = ["chapters/analysis.tex"]
+[chapters."chapters/09-backgrounds.tex"]
+label = "Background estimation"
+target = 5000
+aliases = ["chapters/analysis/analysis.tex", "chapters/analysis.tex"]
 
-[chapters."chapters/conclusion/conclusion.tex"]
+[chapters."chapters/10-systematics.tex"]
+label = "Systematic uncertainties"
+target = 4000
+
+[chapters."chapters/11-results.tex"]
+label = "Interpretation and results"
+target = 5000
+
+[chapters."chapters/12-conclusion.tex"]
 label = "Conclusion"
-target = 2000
-aliases = ["chapters/conclusion.tex"]
+target = 1500
+aliases = ["chapters/conclusion/conclusion.tex", "chapters/conclusion.tex"]

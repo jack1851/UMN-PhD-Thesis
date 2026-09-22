@@ -14,8 +14,9 @@ Symmetric Standard Model, with the CMS experiment. Based on the
   macros mirror the analysis note's `tex/macros.tex` so note text pastes in
   unchanged. Locally it is found through `~/Library/texmf`; CI checks it out
   next to the thesis.
-- `chapters/` — chapter sources, grouped into groundwork / detector /
-  analysis / conclusion
+- `chapters/` — one numbered file per chapter in reading order
+  (`01-intro.tex` ... `12-conclusion.tex`), labelled `ch:<key>`; appendices
+  live in `chapters/appendix/`
 - `preliminaries/` — title page, abstract, acknowledgements, dedication
 - `figures/`, `tables/` — standalone TikZ figure sources, images, and tables
 - `slides/` — beamer talks that reuse the thesis figure sources
