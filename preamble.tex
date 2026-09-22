@@ -1,31 +1,24 @@
-% shared import of packages and command definitions for slides and text
+% Shared preamble for the thesis and the slides.
+%
+% Notation (\WR, \mlljj, \pt, ...), units (siunitx + hepunits), mhchem,
+% cleveref, and acronyms come from billy-common (~/work/billy-common,
+% installed in the texmf tree). Its particle macros mirror the analysis
+% note's tex/macros.tex, so note text drops in unchanged.
 
 \usepackage{silence} % silence warnings
 % dont have tikz-feynman tell me LuaTex would be better on every vertex and line
 \WarningFilter{tikz-feynman}{The key you tried}
 
-\usepackage{epsfig} % Allows the inclusion of eps files
-\usepackage{epic} % Enhanced picture mode
-\usepackage{eepic} % Extensions for epic
 \usepackage{url} % URL handling
 \usepackage{longtable} % Tables that continue onto multiple pages
-\usepackage{mathrsfs} % Support for \mathscr script
 \usepackage{multirow} % Span rows in tables
-\usepackage{amssymb} % AMS math symbols and helpers
 \usepackage{graphicx} % Enhanced graphics support
 \usepackage{setspace} % Adjust spacing in captions, single by default
-\usepackage{xspace} % Automatically adjusting space after macros
-\usepackage{amsmath} % \text, and other math formatting options
-\usepackage[version=4]{mhchem} % For chemistry equations (e.g. Cobalt decay in Wu experiment)
-\usepackage{siunitx} % \num{} formatting and SI unit formatting
 \usepackage{booktabs} % Enhanced tables with \toprule, etc.
-\usepackage{hyperref} % Add clickable links to other parts of the document
 \usepackage{subcaption}
+\usepackage{hyperref} % Clickable links; must precede billy-common (cleveref)
 
-\usepackage[noabbrev,capitalise]{cleveref} % Automatically determine \cref type
-
-% Configure the cleveref package
-\newcommand{\creflastconjunction}{, and } % Always use the serial comma
+\usepackage{billy-common}
 
 \usepackage[compat=1.1.0]{tikz-feynman} % for feynman diagrams
 \tikzfeynmanset{
@@ -34,16 +27,6 @@
 % libraries needed by the standalone figure sources in figures/
 % (\usetikzlibrary does not take effect when called mid-document)
 \usetikzlibrary{calc,math,decorations.pathreplacing}
-
-\usepackage{hepunits}
-% Configure the siunitx package
-\sisetup{
-    group-separator = {,}, % Use , to separate groups of digits, like 12,345
-    list-final-separator = {, and } % Always use the serial comma in \SIlist
-}
-
-% Define a better looking eV by moving the V slightly left
-\DeclareSIUnit\electronvolt{e\hspace{-0.08em}V}
 
 % Add space between rows of tables
 \newcommand{\spacerows}[1]{\renewcommand{\arraystretch}{#1}}

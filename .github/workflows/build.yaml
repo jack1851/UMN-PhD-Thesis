@@ -11,11 +11,22 @@ jobs:
     container: 'danteev/texlive:latest'
     steps:
     - uses: actions/checkout@v4
+    # preamble.tex loads billy-common, which lives in the texmf tree locally;
+    # in CI fetch it next to the thesis and point TEXINPUTS at it. The repo is
+    # private: BILLY_COMMON_TOKEN is a fine-grained PAT with read access to it,
+    # stored as a repository secret.
+    - uses: actions/checkout@v4
+      with:
+        repository: jack1851/billy-common
+        path: billy-common
+        token: ${{ secrets.BILLY_COMMON_TOKEN }}
     - uses: extractions/setup-just@v2
       with:
         just-version: 1.26.0
     - name: Build the Thesis
       run: just build
+      env:
+        TEXINPUTS: ./billy-common//:
     - uses: actions/upload-artifact@v4
       with:
         name: Compiled Thesis
