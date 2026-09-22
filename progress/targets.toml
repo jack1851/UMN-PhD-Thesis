@@ -6,9 +6,16 @@
 # reports them). Targets follow the chapter plan agreed 2026-09-22; the sum
 # is 50k words against ~45-47k for the Pastika and Evans theses.
 #
-# Optional: a date to draw on the chart as a vertical line, with a
-# required-pace line from the latest total to the target on that day.
-# deadline = 2027-05-01
+# Dates and paces for the burn-up bands (see the docstring of plot() in
+# progress.py). Only `deadline` is required for the bands to appear.
+#   plan_start   when the planned pace starts
+#   plan_end     when the planned pace reaches the target (default: deadline - 8 weeks)
+#   max_pace     words/week of a last-minute push (default 3000)
+#   danger_days  margin before the last-possible start (default 30)
+# A chapter table may override plan_start, plan_end and deadline for its
+# own panel.
+deadline = 2027-12-31
+plan_start = 2026-09-22
 
 [chapters."chapters/01-intro.tex"]
 label = "Introduction"

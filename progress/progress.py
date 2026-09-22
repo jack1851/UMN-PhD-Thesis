@@ -10,9 +10,11 @@ and TODO/FIXME in comments). Results accumulate in progress/out/progress.csv
 (commits already logged are not recounted) and are drawn as
 progress/out/progress.png and .svg:
 
-  1. total words against the total target (and a deadline, if configured)
-  2. each chapter as a percentage of its own target
-  3. open items per chapter
+  1. total words as a burn-up chart: the actual count against bands set by
+     a planned pace and the last-possible pace to the deadline
+  2. one small panel per chapter with the same bands, as a share of its target
+
+Open items are reported in the printed table only.
 
 Chapter labels, targets and old file names live in progress/targets.toml.
 
@@ -44,9 +46,6 @@ TODO_MACRO = re.compile(r"\\(?:todo|missingfigure)\b")
 TODO_COMMENT = re.compile(r"%[^\n]*\b(?:TODO|FIXME)\b")
 TEX_COMMENT = re.compile(r"(?<!\\)%[^\n]*")
 
-# Categorical palette, fixed order (see the dataviz reference palette).
-SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100",
-          "#e87ba4", "#008300", "#4a3aa7", "#e34948"]
 SURFACE, INK, INK2, MUTED, GRID, AXIS = (
     "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7")
 
@@ -212,6 +211,24 @@ def print_summary(snaps: list[dict], chapters: dict[str, dict]) -> None:
 
 
 def plot(snaps: list[dict], chapters: dict[str, dict], cfg: dict, out: Path) -> None:
+    """Burn-up chart of total words, then one small multiple per chapter.
+
+    Every panel shows the actual word count against four bands set by two
+    paces: a planned pace (baseline) and the last-possible pace that still
+    reaches the target by the deadline. Config in targets.toml, top level
+    (all optional; without a deadline the bands are skipped):
+
+      deadline      date the thesis must be complete
+      plan_start    date the planned pace starts (default: today)
+      plan_end      date the planned pace reaches the target (default: deadline - 8 weeks)
+      max_pace      sustainable words/week for a last-minute push (default 3000)
+      danger_days   margin before the last-possible start (default 30)
+
+    A chapter table may override plan_start, plan_end and deadline for its
+    own panel; its last-possible pace is max_pace scaled by its share of the
+    total target, so chapters pushed in parallel would all finish together.
+    """
+    import math
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.dates as mdates
@@ -227,81 +244,146 @@ def plot(snaps: list[dict], chapters: dict[str, dict], cfg: dict, out: Path) -> 
         "axes.grid": True, "axes.grid.axis": "y",
         "grid.color": GRID, "grid.linewidth": 0.6, "grid.linestyle": "-",
         "axes.spines.top": False, "axes.spines.right": False,
-        "legend.frameon": False, "legend.fontsize": 8,
     })
+    BLUE, GREEN, YELLOW, RED = "#9db8f0", "#a9d3a0", "#f6efa2", "#f2a49c"
+    BLUE_LINE, RED_LINE = "#2a78d6", "#e34948"
+    day = dt.timedelta(days=1)
     times = [dt.datetime.fromtimestamp(s["time"]) for s in snaps]
-    marker = dict(marker="o", markersize=3.5, markeredgecolor=SURFACE,
-                  markeredgewidth=0.8, drawstyle="steps-post")
     keys = list(chapters)
-    if len(keys) > len(SERIES):
-        sys.exit(f"at most {len(SERIES)} chapters can be plotted; fold some together")
-
-    fig, (ax1, ax2, ax3) = plt.subplots(
-        3, 1, figsize=(11, 9.5), sharex=True,
-        gridspec_kw=dict(height_ratios=[3, 3, 2], hspace=0.32))
-
-    # 1. total words vs target
-    total = [s["words"] for s in snaps]
+    ncol = 4
+    nrow = math.ceil(len(keys) / ncol)
     target = sum(c.get("target", 0) for c in chapters.values())
-    ax1.plot(times, total, color=SERIES[0], linewidth=2, **marker)
-    ax1.annotate(f"{total[-1]:,} words", (times[-1], total[-1]),
-                 xytext=(6, 0), textcoords="offset points", va="center",
-                 color=INK2, fontsize=8)
-    if target:
-        ax1.axhline(target, color=MUTED, linewidth=0.8, linestyle="--")
-        ax1.annotate(f"target {target:,}", (times[0], target), xytext=(0, 4),
-                     textcoords="offset points", color=INK2, fontsize=8)
-    deadline = cfg.get("deadline")
+
+    def as_dt(d, default):
+        return dt.datetime.combine(d, dt.time()) if d else default
+
+    deadline = as_dt(cfg.get("deadline"), None)
+    plan_start = as_dt(cfg.get("plan_start"), times[-1])
+    plan_end = as_dt(cfg.get("plan_end"), deadline - 56 * day if deadline else None)
+    pace = cfg.get("max_pace", 3000) / 7          # words/day
+    margin = cfg.get("danger_days", 30) * day
     if deadline:
-        dl = dt.datetime.combine(deadline, dt.time())
-        for ax in (ax1, ax2, ax3):
-            ax.axvline(dl, color=MUTED, linewidth=0.8, linestyle="--")
-        ax1.annotate(f"deadline {deadline:%b %-d, %Y}", (dl, 0), xytext=(-4, 4),
+        x_start = min(plan_start, times[-1]) - 14 * day
+        x_end = deadline + 60 * day
+    else:
+        x_start, x_end = times[0], times[-1]
+    grid = [x_start + i * day for i in range(int((x_end - x_start).days) + 1)]
+
+    def ramp(t, t0, t1, top):
+        if t1 <= t0 or t >= t1:
+            return float(top)
+        if t <= t0:
+            return 0.0
+        return top * (t - t0) / (t1 - t0)
+
+    def bands(ax, top, t_start, t_end, dl, wpd, ymax, legend=False):
+        """Fill the four bands on ax for a target `top` (in the axis units)."""
+        jit_start = dl - (top / wpd) * day
+        base = [ramp(t, t_start, t_end, top) for t in grid]
+        jit = [ramp(t, jit_start, dl, top) for t in grid]
+        danger = [ramp(t, jit_start - margin, dl - margin, top) for t in grid]
+        lab = dict(ahead="Baseline", on="On track", dng="Danger", late="Late") \
+            if legend else dict(ahead=None, on=None, dng=None, late=None)
+        ax.fill_between(grid, base, ymax, color=BLUE, linewidth=0, label=lab["ahead"])
+        ax.fill_between(grid, danger, base, color=GREEN, linewidth=0, label=lab["on"])
+        ax.fill_between(grid, jit, danger, color=YELLOW, linewidth=0, label=lab["dng"])
+        ax.fill_between(grid, 0, jit, color=RED, linewidth=0, label=lab["late"])
+        ax.plot(grid, base, color=BLUE_LINE, linewidth=1.2)
+        ax.plot(grid, jit, color=RED_LINE, linewidth=1.2)
+        ax.axvline(dl, color=INK2, linewidth=0.7, linestyle="--")
+        ax.grid(False)
+
+    fig = plt.figure(figsize=(11, 4.6 + 1.5 * nrow))
+    gs = fig.add_gridspec(1 + nrow, ncol,
+                          height_ratios=[3] + [1.25] * nrow,
+                          hspace=0.6, wspace=0.28)
+
+    # 1. total words
+    ax1 = fig.add_subplot(gs[0, :])
+    total = [s["words"] for s in snaps]
+    title = "Total word count"
+    if target and deadline:
+        top = target * 1.06
+        bands(ax1, target, plan_start, plan_end, deadline, pace, top, legend=True)
+        ax1.annotate(f"Deadline: {deadline:%b %-d, %Y}", (deadline, 0), xytext=(-4, 4),
                      textcoords="offset points", ha="right", va="bottom",
                      color=INK2, fontsize=8)
-        if target and dl > times[-1]:
-            ax1.plot([times[-1], dl], [total[-1], target], color=MUTED,
-                     linewidth=0.8, linestyle=":")
-            days = max((dl - times[-1]).days, 1)
-            ax1.annotate(f"{(target - total[-1]) / days * 7:,.0f} words/week needed",
-                         (dl, target), xytext=(-4, -12), textcoords="offset points",
-                         ha="right", color=INK2, fontsize=8)
-    ax1.set_title("Total words in chapters/")
-    ax1.set_ylim(bottom=0)
+        if deadline > times[-1]:
+            days = max((deadline - times[-1]).days, 1)
+            title += (f"   ·   {(target - total[-1]) / days * 7:,.0f} words/week "
+                      f"from today finishes on the deadline")
+        ax1.set_ylim(0, top)
+        ax1.legend(loc="upper left", ncol=4, fontsize=8, frameon=True,
+                   facecolor=SURFACE, edgecolor=AXIS, framealpha=1.0,
+                   bbox_to_anchor=(0.01, 0.97), handlelength=1.2, columnspacing=1.2,
+                   borderpad=0.7)
+    else:
+        if target:
+            ax1.axhline(target, color=MUTED, linewidth=0.8, linestyle="--")
+        ax1.set_ylim(bottom=0)
+    ax1.plot(times, total, color=INK, linewidth=1.8, marker="o", markersize=4,
+             markeredgecolor=SURFACE, markeredgewidth=0.6, drawstyle="steps-post")
+    ax1.annotate(f"{total[-1]:,} words", (times[-1], total[-1]),
+                 xytext=(8, 2), textcoords="offset points", va="bottom",
+                 color=INK, fontsize=8, fontweight="bold")
+    ax1.set_title(title, pad=6)
+    ax1.set_xlim(x_start, x_end)
     ax1.yaxis.set_major_formatter(lambda v, _: f"{v:,.0f}")
-
-    # 2. each chapter as a share of its target
-    for i, key in enumerate(keys):
-        tgt = chapters[key].get("target")
-        if not tgt:
-            continue
-        pct = [100 * s["by"][key]["words"] / tgt for s in snaps]
-        ax2.plot(times, pct, color=SERIES[i], linewidth=1.6,
-                 label=chapters[key]["label"], **marker)
-    ax2.axhline(100, color=MUTED, linewidth=0.8, linestyle="--")
-    ax2.set_title("Each chapter as a share of its target")
-    ax2.set_ylim(0, max(105, ax2.get_ylim()[1]))
-    ax2.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
-
-    # 3. open items per chapter
-    for i, key in enumerate(keys):
-        ax3.plot(times, [s["by"][key]["todos"] for s in snaps],
-                 color=SERIES[i], linewidth=1.6, **marker)
-    ax3.set_title(r"Open items (\todo, \missingfigure, TODO/FIXME comments)")
-    from matplotlib.ticker import MaxNLocator
-    ax3.set_ylim(0, max(2, ax3.get_ylim()[1]))
-    ax3.yaxis.set_major_locator(MaxNLocator(integer=True))
-
     loc = mdates.AutoDateLocator()
-    ax3.xaxis.set_major_locator(loc)
-    ax3.xaxis.set_major_formatter(mdates.ConciseDateFormatter(loc))
-    handles, labels = ax2.get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=4,
-               bbox_to_anchor=(0.5, 0.005), handlelength=1.6, columnspacing=1.6)
-    stamp = times[-1].strftime("%Y-%m-%d %H:%M")
-    fig.suptitle(f"Thesis progress  ·  as of {stamp} (working tree)",
-                 x=0.06, ha="left", fontsize=12, fontweight="bold", color=INK)
-    fig.subplots_adjust(left=0.07, right=0.93, top=0.93, bottom=0.11)
+    ax1.xaxis.set_major_locator(loc)
+    ax1.xaxis.set_major_formatter(mdates.ConciseDateFormatter(loc))
+
+    # 2. one small multiple per chapter: share of its own target, same bands
+    ymax = 110.0
+    for key in keys:
+        tgt = chapters[key].get("target")
+        if tgt:
+            ymax = max(ymax, 100 * max(s["by"][key]["words"] for s in snaps) / tgt + 8)
+    for i, key in enumerate(keys):
+        r, c = divmod(i, ncol)
+        ax = fig.add_subplot(gs[1 + r, c], sharex=ax1)
+        ch = chapters[key]
+        tgt = ch.get("target")
+        words = [s["by"][key]["words"] for s in snaps]
+        pct = [100 * w / tgt for w in words] if tgt else [0] * len(words)
+        if tgt and deadline:
+            c_dl = as_dt(ch.get("deadline"), deadline)
+            c_start = as_dt(ch.get("plan_start"), plan_start)
+            c_end = as_dt(ch.get("plan_end"), plan_end if ch.get("deadline") is None
+                          else c_dl - 56 * day)
+            c_pace = pace * tgt / target * (100 / tgt)   # %/day, scaled by share of total
+            bands(ax, 100, c_start, c_end, c_dl, c_pace, ymax)
+        else:
+            ax.axhline(100, color=MUTED, linewidth=0.7, linestyle="--")
+        ax.plot(times, pct, color=INK, linewidth=1.2, marker="o", markersize=2.5,
+                markeredgecolor=SURFACE, markeredgewidth=0.6, drawstyle="steps-post")
+        ax.set_ylim(0, ymax)
+        ax.set_yticks([0, 50, 100])
+        ax.set_title(ch["label"], fontsize=8.5, pad=13)
+        ax.annotate(f"{pct[-1]:.0f}%  ·  {words[-1]:,} / {tgt:,} words",
+                    (0, 1), xycoords="axes fraction", xytext=(0, 2),
+                    textcoords="offset points", va="bottom", ha="left",
+                    color=INK2, fontsize=7)
+        if c == 0:
+            ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
+        else:
+            plt.setp(ax.get_yticklabels(), visible=False)
+        if r == nrow - 1:
+            sloc = mdates.AutoDateLocator(minticks=2, maxticks=4)
+            ax.xaxis.set_major_locator(sloc)
+            ax.xaxis.set_major_formatter(mdates.ConciseDateFormatter(sloc))
+            ax.tick_params(axis="x", labelsize=7)
+        else:
+            plt.setp(ax.get_xticklabels(), visible=False)
+    fig.canvas.draw()
+    top_y = max(a.get_position().y1 for a in fig.axes[1:1 + ncol])
+    fig.text(0.07, top_y + 0.045, "Per Chapter",
+             fontsize=10, fontweight="bold", color=INK, ha="left")
+
+    stamp = times[-1].strftime("%Y-%m-%d")
+    fig.suptitle(f"Thesis progress as of {stamp}",
+                 x=0.07, ha="left", fontsize=12, fontweight="bold", color=INK)
+    fig.subplots_adjust(left=0.07, right=0.95, top=0.93, bottom=0.05)
     fig.savefig(out / "progress.png", dpi=200)
     fig.savefig(out / "progress.svg")
     print(f"wrote {out / 'progress.png'} and .svg")
